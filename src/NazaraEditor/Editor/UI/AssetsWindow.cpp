@@ -2,8 +2,8 @@
 
 namespace Nz
 {
-	EditorAssetsWindow::EditorAssetsWindow()
-		: Nz::EditorWindow("Assets Browser")
+	EditorAssetsWindow::EditorAssetsWindow(EditorBaseApplication* app)
+		: Nz::EditorWindow(app, "Assets Browser")
 	{
 		BuildMenuBar();
 	}

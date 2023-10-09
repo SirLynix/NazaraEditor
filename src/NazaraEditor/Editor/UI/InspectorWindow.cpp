@@ -4,10 +4,10 @@
 
 namespace Nz
 {
-	EditorInspectorWindow::EditorInspectorWindow()
-		: Nz::EditorWindow("Inspector")
+	EditorInspectorWindow::EditorInspectorWindow(EditorBaseApplication* app)
+		: Nz::EditorWindow(app, "Inspector")
 	{
-		EditorApplication::Instance().OnEntitySelected.Connect(this, &EditorInspectorWindow::OnEntitySelected);
+		app->OnEntitySelected.Connect(this, &EditorInspectorWindow::OnEntitySelected);
 	}
 
 	void EditorInspectorWindow::OnEditorGUI()

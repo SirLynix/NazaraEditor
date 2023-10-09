@@ -6,7 +6,7 @@ namespace Nz
 		: public Nz::EditorWindow
 	{
 	public:
-		EditorAssetsWindow();
+		EditorAssetsWindow(EditorBaseApplication* app);
 
 		void ImportAsset();
 

@@ -8,7 +8,7 @@ namespace Nz
 		: public Nz::EditorWindow
 	{
 	public:
-		EditorInspectorWindow();
+		EditorInspectorWindow(EditorBaseApplication* app);
 
 		virtual void OnEditorGUI() override;
 

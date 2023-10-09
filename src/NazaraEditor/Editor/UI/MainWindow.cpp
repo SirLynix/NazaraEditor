@@ -2,8 +2,8 @@
 
 namespace Nz
 {
-	EditorMainWindow::EditorMainWindow()
-		: Nz::EditorWindow("MainWindow")
+	EditorMainWindow::EditorMainWindow(EditorBaseApplication* app)
+		: Nz::EditorWindow(app, "MainWindow")
 	{
 		BuildMenuBar();
 	}
@@ -18,11 +18,6 @@ namespace Nz
 		AddMenuAction("File|Level|Save", "Ctrl+S", [this]() { SaveLevel(); });
 		AddMenuSeparator("File");
 		AddMenuAction("File|Quit", "Ctrl+W", [this]() { Quit(); });
-	}
-
-	void EditorMainWindow::OnEditorGUI()
-	{
-
 	}
 
 	bool EditorMainWindow::Quit()

@@ -4,15 +4,15 @@
 
 namespace Nz
 {
-	EditorLevelWindow::EditorLevelWindow()
-		: Nz::EditorWindow("Level")
-		, m_currentWorld(EditorApplication::Instance().GetCurrentWorld())
+	EditorLevelWindow::EditorLevelWindow(EditorBaseApplication* app)
+		: Nz::EditorWindow(app, "Level")
+		, m_currentWorld(app->GetCurrentWorld())
 		, m_dirty(true)
 	{
-		EditorApplication::Instance().OnWorldChanged.Connect([this](Nz::EnttWorld* world) { m_currentWorld = world; m_dirty = true; });
-		EditorApplication::Instance().OnEntityCreated.Connect([this](entt::handle) { m_dirty = true; });
-		EditorApplication::Instance().OnEntityDestroyed.Connect([this](entt::handle) { m_dirty = true; });
-		EditorApplication::Instance().OnEntityParentChanged.Connect([this](entt::handle) { m_dirty = true; });
+		app->OnWorldChanged.Connect([this](Nz::EnttWorld* world) { m_currentWorld = world; m_dirty = true; });
+		app->OnEntityCreated.Connect([this](entt::handle) { m_dirty = true; });
+		app->OnEntityDestroyed.Connect([this](entt::handle) { m_dirty = true; });
+		app->OnEntityParentChanged.Connect([this](entt::handle) { m_dirty = true; });
 	}
 
 	void EditorLevelWindow::OnEditorGUI()

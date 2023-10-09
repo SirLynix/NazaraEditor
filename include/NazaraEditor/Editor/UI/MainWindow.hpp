@@ -6,7 +6,7 @@ namespace Nz
 		: public Nz::EditorWindow
 	{
 	public:
-		EditorMainWindow();
+		EditorMainWindow(EditorBaseApplication* app);
 
 		bool Quit();
 
