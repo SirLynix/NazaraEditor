@@ -78,24 +78,24 @@ namespace Nz
 	namespace EditorImgui
 	{
 		template <typename T, size_t Size>
-		static bool Begin(ArrayEntry<T>& obj, const std::string& name, const std::string& tooltip)
+		inline bool Begin(ArrayEntry<T>& obj, const std::string& name, const std::string& tooltip)
 		{
 			ImGui::BeginGroup();
 		}
 
 		template <typename T, size_t Size>
-		static void End(ArrayEntry<T>&) {
+		inline void End(ArrayEntry<T>&) {
 			ImGui::EndGroup();
 		}
 
 		template <typename T, size_t Size>
-		static bool Begin(std::array<T, Size>& obj, const std::string& name, const std::string& tooltip)
+		inline bool Begin(std::array<T, Size>& obj, const std::string& name, const std::string& tooltip)
 		{
 			return ImGui::TreeNode(name.c_str());
 		}
 
 		template <typename T, size_t Size>
-		static void End(std::array<T, Size>&) {
+		inline void End(std::array<T, Size>&) {
 			ImGui::TreePop();
 		}
 	}
@@ -123,13 +123,13 @@ namespace Nz
 
 	namespace EditorImgui
 	{
-		static bool Begin(entt::handle& obj, const std::string& name, const std::string& tooltip)
+		inline bool Begin(entt::handle& obj, const std::string& name, const std::string& tooltip)
 		{
 			std::string n = "Entity " + name;
 			return ImGui::TreeNode(n.c_str());
 		}
 
-		static void End(entt::handle&) {
+		inline void End(entt::handle&) {
 			ImGui::TreePop();
 		}
 	}
