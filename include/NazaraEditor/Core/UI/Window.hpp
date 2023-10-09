@@ -8,11 +8,13 @@ namespace Nz
 {
 	using ActionCallback = std::function<void(void)>;
 
+	class EditorBaseApplication;
+
 	class NAZARAEDITOR_CORE_API EditorWindow
 		: private Nz::ImguiHandler
 	{
 	public:
-		EditorWindow(const std::string& name = "");
+		EditorWindow(EditorBaseApplication* app, const std::string& name = "");
 		~EditorWindow();
 
 		EditorWindow(const EditorWindow&) = delete;
@@ -29,6 +31,7 @@ namespace Nz
 	private:
 		void DrawMenus();
 
+		EditorBaseApplication* m_application;
 		std::string m_windowName;
 
 		struct MenuAction

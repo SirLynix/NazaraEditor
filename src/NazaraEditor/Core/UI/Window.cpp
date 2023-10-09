@@ -4,8 +4,9 @@
 
 namespace Nz
 {
-	EditorWindow::EditorWindow(const std::string& name)
-		: m_windowName(name)
+	EditorWindow::EditorWindow(EditorBaseApplication* app, const std::string& name)
+		: m_application(app)
+		, m_windowName(name)
 	{
 		Nz::Imgui::Instance()->AddHandler(this);
 	}
