@@ -25,7 +25,10 @@ int WinMain(int argc, char* argv[])
 	NazaraUnused(argc);
 	NazaraUnused(argv);
 
-	Nz::EditorApplication& app = Nz::EditorApplication::Instance();
+	EditorApplication app;
+
+	ImGui::EnsureContextOnThisThread();
+
 	app.RegisterWindow<Nz::EditorMainWindow>();
 	app.RegisterWindow<Nz::EditorAssetsWindow>();
 	app.RegisterWindow<Nz::EditorLevelWindow>();
