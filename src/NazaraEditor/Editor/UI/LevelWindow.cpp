@@ -44,8 +44,10 @@ namespace NzEditor
 		if (!m_currentLevel.IsValid())
 			return;
 
-		m_currentWorld->GetRegistry().each([&](const entt::entity entity) {
-			entt::handle handle(m_currentWorld->GetRegistry(), entity);
+		auto& registry = m_currentLevel.GetEnttWorld()->GetRegistry();
+		for(auto&& entity : registry.storage<entt::entity>().each())
+		{
+			entt::handle handle(registry, std::get<entt::entity>(entity));
 			Nz::NodeComponent* component = handle.try_get<Nz::NodeComponent>();
 			if (component != nullptr)
 			{
@@ -53,6 +55,6 @@ namespace NzEditor
 				if (component->GetParent() == nullptr)
 					m_rootNodes.push_back(component);
 			}
-		});
+		}
 	}
 }
