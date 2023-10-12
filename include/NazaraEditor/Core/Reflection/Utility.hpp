@@ -26,7 +26,7 @@ namespace Nz
 	{
 		inline bool Begin(Nz::NodeComponent& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/)
 		{
-			return ImGui::TreeNode("NodeComponent");
+			return ImGui::TreeNodeEx("NodeComponent", ImGuiTreeNodeFlags_Framed);
 		}
 
 		inline void End(Nz::NodeComponent& /*obj*/) {

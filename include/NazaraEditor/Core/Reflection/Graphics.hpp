@@ -42,7 +42,7 @@ namespace Nz
 
 		inline bool Begin(Nz::LightComponent& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/)
 		{
-			return ImGui::TreeNode("LightComponent");
+			return ImGui::TreeNodeEx("LightComponent", ImGuiTreeNodeFlags_Framed);
 		}
 
 		inline void End(Nz::LightComponent&) {

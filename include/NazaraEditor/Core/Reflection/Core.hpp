@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <imgui.h>
+#include <imgui_stdlib.h>
 
 namespace Nz
 {
@@ -42,6 +43,18 @@ namespace Nz
 		}
 
 		inline void End(Color&) {}
+	}
+
+	namespace EditorImgui
+	{
+		inline bool Begin(std::string& obj, const std::string& name, const std::string& tooltip)
+		{
+			ImGui::InputText(name.c_str(), &obj);
+			Tooltip(tooltip);
+			return false;
+		}
+
+		inline void End(std::string&) {}
 	}
 
 	// Wrapper for array values
@@ -126,8 +139,7 @@ namespace Nz
 	{
 		inline bool Begin(entt::handle& /*obj*/, const std::string& name, const std::string& /*tooltip*/)
 		{
-			std::string n = "Entity " + name;
-			return ImGui::TreeNode(n.c_str());
+			return ImGui::TreeNode(name.c_str());
 		}
 
 		inline void End(entt::handle&) {

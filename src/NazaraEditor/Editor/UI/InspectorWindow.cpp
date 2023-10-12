@@ -16,7 +16,7 @@ namespace NzEditor
 			return;
 
 		Nz::EditorPropertyInspector<Nz::EditorRenderer> enumerator;
-		enumerator.AddProperty(m_currentEntity, "", "");
+		enumerator.AddPropertyNoWrapper(m_currentEntity, "", "");
 		ImGui::End();
 	}
 

@@ -1,6 +1,7 @@
 #include <NazaraEditor/Editor/UI/LevelWindow.hpp>
 
 #include <NazaraEditor/Editor/Application.hpp>
+#include <NazaraEditor/Core.hpp>
 
 namespace NzEditor
 {
@@ -22,9 +23,11 @@ namespace NzEditor
 		std::function<void(Nz::Node*)> drawHierarchy = [&](Nz::Node* c)
 		{
 			entt::handle entity = m_nodeToEntity[c];
-			std::ostringstream oss;
-			oss << "(" << (uint32_t)entity.entity() << ")";
-			if (Nz::EditorImgui::Begin(entity, oss.str(), ""))
+			Nz::EditorNameComponent* nameComponent = entity.try_get<Nz::EditorNameComponent>();
+			if (nameComponent->GetFlags() & Nz::EditorEntityFlags_Hidden)
+				return;
+
+			if (Nz::EditorImgui::Begin(entity, nameComponent->GetName(), ""))
 			{
 				for (auto& child : c->GetChilds())
 					drawHierarchy(child);
