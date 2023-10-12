@@ -37,7 +37,7 @@ namespace Nz
 		bool CloseLevel();
 		bool OpenLevel(const std::filesystem::path& path);
 
-		entt::handle CreateEntity();
+		entt::handle CreateEntity(const std::string& name);
 
 		template<typename T>
 		void RegisterWindow()

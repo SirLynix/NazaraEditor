@@ -1,4 +1,5 @@
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
+#include <NazaraEditor/Core/Components/NameComponent.hpp>
 
 namespace Nz
 {
@@ -49,9 +50,12 @@ namespace Nz
 		return m_level;
 	}
 
-	entt::handle EditorBaseApplication::CreateEntity()
+	entt::handle EditorBaseApplication::CreateEntity(const std::string& name)
 	{
 		entt::handle entity = m_level.CreateEntity();
+		Nz::EditorNameComponent& nameComponent = entity.emplace<Nz::EditorNameComponent>();
+		nameComponent.SetName(name);
+
 		entity.emplace<Nz::NodeComponent>();
 
 		OnEntityCreated(entity);
