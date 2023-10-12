@@ -25,7 +25,7 @@ namespace Nz
 		EditorAction(const Properties& properties)
 			: m_properties(std::make_shared<Properties>(properties))
 		{}
-		~EditorAction() = default;
+		virtual ~EditorAction() = default;
 
 		EditorAction(const EditorAction&) = delete;
 		EditorAction& operator=(const EditorAction&) = delete;
