@@ -25,6 +25,9 @@ namespace Nz
 		void AddMenuAction(const std::string& path, const std::string& shortcut, ActionCallback callback);
 		void AddMenuSeparator(const std::string& path);
 
+		EditorBaseApplication* GetApplication() { return m_application; }
+		const EditorBaseApplication* GetApplication() const { return m_application; }
+
 	protected:
 		void DrawMenus();
 
