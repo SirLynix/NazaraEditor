@@ -2,10 +2,8 @@
 
 namespace Nz
 {
-	EditorBaseApplication* EditorBaseApplication::s_instance = nullptr;
-
 	EditorBaseApplication::EditorBaseApplication()
-		: m_world(nullptr)
+		: m_level(this)
 	{
 		s_instance = this;
 
@@ -28,7 +26,7 @@ namespace Nz
 		Nz::Imgui::Instance()->Init(window);
 		ImGui::EnsureContextOnThisThread();
 
-		NewWorld();
+		NewLevel();
 
 		AddUpdaterFunc(Interval{ Nz::Time::Milliseconds(16) }, [&](Nz::Time elapsed) {
 			if (!window.IsOpen())
@@ -48,17 +46,14 @@ namespace Nz
 		});
 	}
 
-	Nz::EnttWorld* EditorBaseApplication::GetCurrentWorld()
+	Nz::Level& EditorBaseApplication::GetLevel()
 	{
-		return m_world;
+		return m_level;
 	}
 
 	entt::handle EditorBaseApplication::CreateEntity()
 	{
-		if (m_world == nullptr)
-			return {};
-
-		entt::handle entity = m_world->CreateEntity();
+		entt::handle entity = m_level.CreateEntity();
 		entity.emplace<Nz::NodeComponent>();
 
 		OnEntityCreated(entity);
@@ -66,9 +61,8 @@ namespace Nz
 		return entity;
 	}
 
-	void EditorBaseApplication::NewWorld()
+	bool EditorBaseApplication::NewLevel()
 	{
-		auto& ecs = GetComponent<Nz::AppEntitySystemComponent>();
-		m_world = &ecs.AddWorld<Nz::EnttWorld>();
+		return m_level.CreateNewLevel();
 	}
 }

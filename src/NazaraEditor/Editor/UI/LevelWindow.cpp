@@ -6,10 +6,10 @@ namespace NzEditor
 {
 	LevelWindow::LevelWindow(Nz::EditorBaseApplication* app)
 		: Nz::EditorWindow(app, "Level")
-		, m_currentWorld(app->GetCurrentWorld())
+		, m_currentLevel(app->GetLevel())
 		, m_dirty(true)
 	{
-		app->OnWorldChanged.Connect([this](Nz::EnttWorld* world) { m_currentWorld = world; m_dirty = true; });
+		app->OnWorldChanged.Connect([this](Nz::Level&) { m_dirty = true; });
 		app->OnEntityCreated.Connect([this](entt::handle) { m_dirty = true; });
 		app->OnEntityDestroyed.Connect([this](entt::handle) { m_dirty = true; });
 		app->OnEntityParentChanged.Connect([this](entt::handle) { m_dirty = true; });
@@ -41,7 +41,7 @@ namespace NzEditor
 		m_rootNodes.clear();
 		m_nodeToEntity.clear();
 
-		if (m_currentWorld == nullptr)
+		if (!m_currentLevel.IsValid())
 			return;
 
 		m_currentWorld->GetRegistry().each([&](const entt::entity entity) {

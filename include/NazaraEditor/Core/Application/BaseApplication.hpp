@@ -8,6 +8,7 @@
 
 #include <NazaraEditor/Core/Core.hpp>
 #include <NazaraEditor/Core/Application/Action.hpp>
+#include <NazaraEditor/Core/Application/Level.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
 #include <NazaraImgui/NazaraImgui.hpp>
 
@@ -17,7 +18,7 @@ namespace Nz
 		: public Nz::Application<Nz::Graphics, Nz::Imgui, Nz::EditorCore>
 	{
 	public:
-		NazaraSignal(OnWorldChanged, Nz::EnttWorld*);
+		NazaraSignal(OnWorldChanged, Nz::Level&);
 
 		// Entity lifetime events
 		NazaraSignal(OnEntityCreated, entt::handle);
@@ -30,8 +31,10 @@ namespace Nz
 
 		EditorBaseApplication();
 
-		void NewWorld();
-		Nz::EnttWorld* GetCurrentWorld();
+		Nz::Level& GetLevel();
+		bool NewLevel();
+		bool CloseLevel();
+		bool OpenLevel(const std::filesystem::path& path);
 
 		entt::handle CreateEntity();
 
@@ -44,12 +47,10 @@ namespace Nz
 
 	private:
 		std::unique_ptr<Nz::WindowSwapchain> m_windowSwapchain;
-		Nz::EnttWorld* m_world;
-
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
-
 		std::vector<std::unique_ptr<EditorAction>> m_actions;
 
 		static EditorBaseApplication* s_instance;
+		Nz::Level m_level;
 	};
 }
