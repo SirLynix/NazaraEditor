@@ -50,7 +50,6 @@ namespace Nz
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
 		std::vector<std::unique_ptr<EditorAction>> m_actions;
 
-		static EditorBaseApplication* s_instance;
 		Nz::Level m_level;
 	};
 }

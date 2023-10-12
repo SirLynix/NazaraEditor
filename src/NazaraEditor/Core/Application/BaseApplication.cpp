@@ -5,8 +5,6 @@ namespace Nz
 	EditorBaseApplication::EditorBaseApplication()
 		: m_level(this)
 	{
-		s_instance = this;
-
 		auto& windowing = AddComponent<Nz::AppWindowingComponent>();
 
 		std::shared_ptr<Nz::RenderDevice> device = Nz::Graphics::Instance()->GetRenderDevice();
