@@ -22,10 +22,20 @@ namespace NzEditor
 		std::function<void(Nz::Node*)> drawHierarchy = [&](Nz::Node* c)
 		{
 			entt::handle entity = m_nodeToEntity[c];
-			Nz::EditorImgui::Begin(entity, "", "");
-			for (auto& child : c->GetChilds())
-				drawHierarchy(child);
-			Nz::EditorImgui::End(entity);
+			std::ostringstream oss;
+			oss << "(" << (uint32_t)entity.entity() << ")";
+			if (Nz::EditorImgui::Begin(entity, oss.str(), ""))
+			{
+				for (auto& child : c->GetChilds())
+					drawHierarchy(child);
+
+				Nz::EditorImgui::End(entity);
+			}
+
+			if (ImGui::IsItemClicked())
+			{
+				GetApplication()->OnEntitySelected(entity);
+			}
 		};
 
 		for (auto& node : m_rootNodes)
