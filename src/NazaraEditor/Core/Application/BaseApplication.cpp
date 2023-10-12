@@ -61,6 +61,11 @@ namespace Nz
 
 	bool EditorBaseApplication::NewLevel()
 	{
-		return m_level.CreateNewLevel();
+		bool bRes = m_level.CreateNewLevel();
+		if (bRes)
+		{
+			OnLevelChanged(m_level);
+		}
+		return bRes;
 	}
 }

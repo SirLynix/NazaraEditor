@@ -9,7 +9,7 @@ namespace NzEditor
 		, m_currentLevel(app->GetLevel())
 		, m_dirty(true)
 	{
-		app->OnWorldChanged.Connect([this](Nz::Level&) { m_dirty = true; });
+		app->OnLevelChanged.Connect([this](Nz::Level&) { m_dirty = true; });
 		app->OnEntityCreated.Connect([this](entt::handle) { m_dirty = true; });
 		app->OnEntityDestroyed.Connect([this](entt::handle) { m_dirty = true; });
 		app->OnEntityParentChanged.Connect([this](entt::handle) { m_dirty = true; });

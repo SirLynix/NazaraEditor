@@ -18,7 +18,7 @@ namespace Nz
 		: public Nz::Application<Nz::Graphics, Nz::Imgui, Nz::EditorCore>
 	{
 	public:
-		NazaraSignal(OnWorldChanged, Nz::Level&);
+		NazaraSignal(OnLevelChanged, Nz::Level&);
 
 		// Entity lifetime events
 		NazaraSignal(OnEntityCreated, entt::handle);
