@@ -2,9 +2,9 @@
 
 #include <NazaraEditor/Editor/Application.hpp>
 
-namespace Nz
+namespace NzEditor
 {
-	EditorLevelWindow::EditorLevelWindow(EditorBaseApplication* app)
+	LevelWindow::LevelWindow(Nz::EditorBaseApplication* app)
 		: Nz::EditorWindow(app, "Level")
 		, m_currentWorld(app->GetCurrentWorld())
 		, m_dirty(true)
@@ -15,7 +15,7 @@ namespace Nz
 		app->OnEntityParentChanged.Connect([this](entt::handle) { m_dirty = true; });
 	}
 
-	void EditorLevelWindow::OnEditorGUI()
+	void LevelWindow::OnEditorGUI()
 	{
 		RefreshEntities();
 
@@ -32,7 +32,7 @@ namespace Nz
 			drawHierarchy(node);
 	}
 
-	void EditorLevelWindow::RefreshEntities()
+	void LevelWindow::RefreshEntities()
 	{
 		if (!m_dirty)
 			return;

@@ -2,15 +2,15 @@
 
 #include <NazaraEditor/Editor/Application.hpp>
 
-namespace Nz
+namespace NzEditor
 {
-	EditorInspectorWindow::EditorInspectorWindow(EditorBaseApplication* app)
+	InspectorWindow::InspectorWindow(Nz::EditorBaseApplication* app)
 		: Nz::EditorWindow(app, "Inspector")
 	{
-		app->OnEntitySelected.Connect(this, &EditorInspectorWindow::OnEntitySelected);
+		app->OnEntitySelected.Connect(this, &InspectorWindow::OnEntitySelected);
 	}
 
-	void EditorInspectorWindow::OnEditorGUI()
+	void InspectorWindow::OnEditorGUI()
 	{
 		if (!m_currentEntity)
 			return;
@@ -20,12 +20,12 @@ namespace Nz
 		ImGui::End();
 	}
 
-	void EditorInspectorWindow::OnEntitySelected(entt::handle entity)
+	void InspectorWindow::OnEntitySelected(entt::handle entity)
 	{
 		m_currentEntity = entity;
 	}
 
-	void EditorInspectorWindow::OnEntityDeselected(entt::handle)
+	void InspectorWindow::OnEntityDeselected(entt::handle)
 	{
 		m_currentEntity = {};
 	}

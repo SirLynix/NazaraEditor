@@ -25,14 +25,14 @@ int WinMain(int argc, char* argv[])
 	NazaraUnused(argc);
 	NazaraUnused(argv);
 
-	EditorApplication app;
+	NzEditor::Application app;
 
 	ImGui::EnsureContextOnThisThread();
 
-	app.RegisterWindow<Nz::EditorMainWindow>();
-	app.RegisterWindow<Nz::EditorAssetsWindow>();
-	app.RegisterWindow<Nz::EditorLevelWindow>();
-	app.RegisterWindow<Nz::EditorInspectorWindow>();
+	app.RegisterWindow<NzEditor::MainWindow>();
+	app.RegisterWindow<NzEditor::AssetsWindow>();
+	app.RegisterWindow<NzEditor::LevelWindow>();
+	app.RegisterWindow<NzEditor::InspectorWindow>();
 
 	entt::meta<Nz::NodeComponent>()
 		.type(entt::type_hash<Nz::NodeComponent>::value())

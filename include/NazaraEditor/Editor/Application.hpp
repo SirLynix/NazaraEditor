@@ -2,8 +2,11 @@
 
 #include <NazaraEditor/Core.hpp>
 
-class EditorApplication
-	: public Nz::EditorBaseApplication
+namespace NzEditor
 {
+	class Application
+		: public Nz::EditorBaseApplication
+	{
 
-};
+	};
+}

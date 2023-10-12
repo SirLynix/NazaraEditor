@@ -1,12 +1,12 @@
-#include <NazaraEditor/Core/UI/Window.hpp>
+#include <NazaraEditor/Core/UI/MainWindow.h>
 
-namespace Nz
+namespace NzEditor
 {
-	class EditorMainWindow
-		: public Nz::EditorWindow
+	class MainWindow
+		: public Nz::EditorMainWindow
 	{
 	public:
-		EditorMainWindow(EditorBaseApplication* app);
+		MainWindow(Nz::EditorBaseApplication* app);
 
 		bool Quit();
 

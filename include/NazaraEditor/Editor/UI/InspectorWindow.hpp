@@ -2,13 +2,13 @@
 
 #include <entt/entt.hpp>
 
-namespace Nz
+namespace NzEditor
 {
-	class EditorInspectorWindow
+	class InspectorWindow
 		: public Nz::EditorWindow
 	{
 	public:
-		EditorInspectorWindow(EditorBaseApplication* app);
+		InspectorWindow(Nz::EditorBaseApplication* app);
 
 		virtual void OnEditorGUI() override;
 

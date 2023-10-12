@@ -1,19 +1,19 @@
 #include <NazaraEditor/Editor/UI/AssetsWindow.hpp>
 
-namespace Nz
+namespace NzEditor
 {
-	EditorAssetsWindow::EditorAssetsWindow(EditorBaseApplication* app)
+	AssetsWindow::AssetsWindow(Nz::EditorBaseApplication* app)
 		: Nz::EditorWindow(app, "Assets Browser")
 	{
 		BuildMenuBar();
 	}
 
-	void EditorAssetsWindow::ImportAsset()
+	void AssetsWindow::ImportAsset()
 	{
 
 	}
 
-	void EditorAssetsWindow::BuildMenuBar()
+	void AssetsWindow::BuildMenuBar()
 	{
 		AddMenuAction("Import", "Ctrl+I", [this]() { ImportAsset(); });
 	}

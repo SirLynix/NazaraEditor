@@ -1,14 +1,14 @@
 #include <NazaraEditor/Editor/UI/MainWindow.hpp>
 
-namespace Nz
+namespace NzEditor
 {
-	EditorMainWindow::EditorMainWindow(EditorBaseApplication* app)
-		: Nz::EditorWindow(app, "MainWindow")
+	MainWindow::MainWindow(Nz::EditorBaseApplication* app)
+		: Nz::EditorMainWindow(app, "MainWindow")
 	{
 		BuildMenuBar();
 	}
 
-	void EditorMainWindow::BuildMenuBar()
+	void MainWindow::BuildMenuBar()
 	{
 		AddMenuAction("File|Project|New", "Ctrl+Shift+N", [this]() { NewProject(); });
 		AddMenuAction("File|Project|Open", "Ctrl+Shift+O", [this]() { OpenProject(); });
@@ -20,37 +20,37 @@ namespace Nz
 		AddMenuAction("File|Quit", "Ctrl+W", [this]() { Quit(); });
 	}
 
-	bool EditorMainWindow::Quit()
+	bool MainWindow::Quit()
 	{
 		return true;
 	}
 
-	bool EditorMainWindow::NewLevel()
+	bool MainWindow::NewLevel()
 	{
 		return true;
 	}
 
-	bool EditorMainWindow::OpenLevel()
+	bool MainWindow::OpenLevel()
 	{
 		return true;
 	}
 
-	bool EditorMainWindow::SaveLevel()
+	bool MainWindow::SaveLevel()
 	{
 		return true;
 	}
 
-	bool EditorMainWindow::NewProject()
+	bool MainWindow::NewProject()
 	{
 		return true;
 	}
 
-	bool EditorMainWindow::OpenProject()
+	bool MainWindow::OpenProject()
 	{
 		return true;
 	}
 
-	bool EditorMainWindow::SaveProject()
+	bool MainWindow::SaveProject()
 	{
 		return true;
 	}

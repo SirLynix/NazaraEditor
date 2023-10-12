@@ -1,12 +1,12 @@
 #include <NazaraEditor/Core/UI/Window.hpp>
 
-namespace Nz
+namespace NzEditor
 {
-	class EditorAssetsWindow
+	class AssetsWindow
 		: public Nz::EditorWindow
 	{
 	public:
-		EditorAssetsWindow(EditorBaseApplication* app);
+		AssetsWindow(Nz::EditorBaseApplication* app);
 
 		void ImportAsset();
 

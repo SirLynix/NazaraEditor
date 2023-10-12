@@ -1,22 +1,22 @@
-#include <NazaraEditor/Core/UI/Window.hpp>
+#include <NazaraEditor/Core.hpp>
 
 #include <Nazara/Core.hpp>
 #include <Nazara/Utility.hpp>
 
-namespace Nz
+namespace NzEditor
 {
-	class EditorLevelWindow
+	class LevelWindow
 		: public Nz::EditorWindow
 	{
 	public:
-		EditorLevelWindow(EditorBaseApplication* app);
+		LevelWindow(Nz::EditorBaseApplication* app);
 
 		virtual void OnEditorGUI() override;
 
 	protected:
 		void RefreshEntities();
 
-		Nz::EnttWorld* m_currentWorld;
+		Nz::Level& m_currentLevel;
 		bool m_dirty;
 
 		std::vector<Nz::Node*> m_rootNodes;

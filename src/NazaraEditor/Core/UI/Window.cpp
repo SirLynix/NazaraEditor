@@ -20,10 +20,13 @@ namespace Nz
 	{
 		bool bNeedsMenu = !m_root.entries.empty();
 		ImGuiWindowFlags flags = (bNeedsMenu ? ImGuiWindowFlags_MenuBar : 0);
-
 		if (ImGui::Begin(m_windowName.c_str(), nullptr, flags))
 		{
-			DrawMenus();
+			if (ImGui::BeginMenuBar())
+			{
+				DrawMenus();
+				ImGui::EndMenuBar();
+			}
 
 			OnEditorGUI();
 
@@ -80,12 +83,8 @@ namespace Nz
 				}, menu);
 		};
 
-		if (ImGui::BeginMenuBar())
-		{
-			for (auto& menu : m_root.entries)
-				visitor(menu);
-			ImGui::EndMenuBar();
-		}
+		for (auto& menu : m_root.entries)
+			visitor(menu);
 	}
 
 	EditorWindow::MenuList& EditorWindow::GetOrCreateMenuHierarchy(const std::vector<std::string_view>& hierarchy)

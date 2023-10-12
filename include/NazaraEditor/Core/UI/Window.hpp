@@ -15,7 +15,7 @@ namespace Nz
 	{
 	public:
 		EditorWindow(EditorBaseApplication* app, const std::string& name = "");
-		~EditorWindow();
+		virtual ~EditorWindow();
 
 		EditorWindow(const EditorWindow&) = delete;
 		EditorWindow& operator=(const EditorWindow&) = delete;
@@ -26,10 +26,13 @@ namespace Nz
 		void AddMenuSeparator(const std::string& path);
 
 	protected:
+		void DrawMenus();
+
 		virtual void OnEditorGUI() {};
 
+		virtual ImGuiWindowFlags GetCustomWindowFlags() const { return ImGuiWindowFlags_None; }
+
 	private:
-		void DrawMenus();
 
 		EditorBaseApplication* m_application;
 		std::string m_windowName;
