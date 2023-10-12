@@ -32,7 +32,7 @@ namespace Nz
 
 	namespace EditorImgui
 	{
-		inline bool Begin(Nz::LightComponent::LightEntry& obj, const std::string& name, const std::string& tooltip)
+		inline bool Begin(Nz::LightComponent::LightEntry& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/)
 		{
 			return false;
 		}
@@ -40,7 +40,7 @@ namespace Nz
 		inline void End(Nz::LightComponent::LightEntry&) {
 		}
 
-		inline bool Begin(Nz::LightComponent& obj, const std::string& name, const std::string& tooltip)
+		inline bool Begin(Nz::LightComponent& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/)
 		{
 			return ImGui::TreeNode("LightComponent");
 		}

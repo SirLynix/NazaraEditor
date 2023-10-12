@@ -24,12 +24,12 @@ namespace Nz
 
 	namespace EditorImgui
 	{
-		inline bool Begin(Nz::NodeComponent& obj, const std::string& name, const std::string& tooltip)
+		inline bool Begin(Nz::NodeComponent& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/)
 		{
 			return ImGui::TreeNode("NodeComponent");
 		}
 
-		inline void End(Nz::NodeComponent&) {
+		inline void End(Nz::NodeComponent& /*obj*/) {
 			ImGui::TreePop();
 		}
 	}

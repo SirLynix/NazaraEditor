@@ -124,7 +124,7 @@ namespace Nz
 
 	namespace EditorImgui
 	{
-		inline bool Begin(entt::handle& obj, const std::string& name, const std::string& tooltip)
+		inline bool Begin(entt::handle& /*obj*/, const std::string& name, const std::string& /*tooltip*/)
 		{
 			std::string n = "Entity " + name;
 			return ImGui::TreeNode(n.c_str());
