@@ -37,6 +37,7 @@ namespace Nz
 			{
 				obj = Color(values[0], values[1], values[2], values[3]);
 			}
+			Tooltip(tooltip);
 			return false;
 		}
 
