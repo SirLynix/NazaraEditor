@@ -30,6 +30,7 @@ namespace Nz
 		NazaraSignal(OnEntityDeselected, entt::handle);
 
 		EditorBaseApplication();
+		virtual ~EditorBaseApplication() = default;
 
 		Nz::Level& GetLevel();
 		bool NewLevel();
