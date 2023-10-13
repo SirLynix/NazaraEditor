@@ -78,6 +78,21 @@ namespace Nz
 		}
 
 		inline void End(Nz::Quaternionf&) {}
+
+		template <AngleUnit Unit, typename T>
+		inline bool Begin(Nz::Angle<Unit, T>& obj, const std::string& name, const std::string& tooltip)
+		{
+			auto angle = obj.To<Unit>();
+			if (ImGui::DragFloat(name.c_str(), &angle, 1.f, std::numeric_limits<float>::min(), std::numeric_limits<float>::max()))
+			{
+				obj.From<Unit>(angle);
+			}
+			Tooltip(tooltip);
+			return false;
+		}
+
+		template <AngleUnit Unit, typename T>
+		inline void End(Nz::Angle<Unit, T>& obj) {}
 	}
 
 }
