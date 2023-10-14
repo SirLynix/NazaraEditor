@@ -24,4 +24,17 @@ namespace Nz
 			}
 		}
 	}
+
+#define COMPONENT_IMGUI_FUNCS(ComponentType) \
+namespace EditorImgui \
+{ \
+	inline bool Begin(Nz::ComponentType& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/) \
+	{ \
+		return ImGui::TreeNodeEx(#ComponentType, ImGuiTreeNodeFlags_Framed); \
+	} \
+	\
+	inline void End(Nz::ComponentType&) { \
+		ImGui::TreePop(); \
+	} \
+}
 }

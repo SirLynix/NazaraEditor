@@ -47,6 +47,16 @@ namespace Nz
 		}
 	};
 
+	template <>
+	class TypeReflect<GraphicsComponent>
+	{
+	public:
+		template <typename TPropertyEnumerator>
+		static void Reflect(TPropertyEnumerator& p, GraphicsComponent& obj)
+		{
+			p.AddProperty([&obj]() { return obj.IsVisible(); }, [&obj](bool v) { obj.Show(v); }, "Is Visible", "Toggles mesh visibility");
+		}
+	};
 
 	namespace EditorImgui
 	{
@@ -57,23 +67,9 @@ namespace Nz
 
 		inline void End(Nz::LightComponent::LightEntry&) {
 		}
-
-		inline bool Begin(Nz::LightComponent& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/)
-		{
-			return ImGui::TreeNodeEx("LightComponent", ImGuiTreeNodeFlags_Framed);
-		}
-
-		inline void End(Nz::LightComponent&) {
-			ImGui::TreePop();
-		}
-
-		inline bool Begin(Nz::CameraComponent& /*obj*/, const std::string& /*name*/, const std::string& /*tooltip*/)
-		{
-			return ImGui::TreeNodeEx("CameraComponent", ImGuiTreeNodeFlags_Framed);
-		}
-
-		inline void End(Nz::CameraComponent&) {
-			ImGui::TreePop();
-		}
 	}
+
+	COMPONENT_IMGUI_FUNCS(LightComponent);
+	COMPONENT_IMGUI_FUNCS(CameraComponent);
+	COMPONENT_IMGUI_FUNCS(GraphicsComponent);
 }

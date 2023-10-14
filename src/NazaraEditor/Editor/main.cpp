@@ -43,6 +43,9 @@ int WinMain(int argc, char* argv[])
 	entt::meta<Nz::LightComponent>()
 		.type(entt::type_hash<Nz::LightComponent>::value())
 		.func<&Nz::ReflectComponent<Nz::EditorPropertyInspector<Nz::EditorRenderer>, Nz::LightComponent>>(entt::hashed_string("Reflect"));
+	entt::meta<Nz::GraphicsComponent>()
+		.type(entt::type_hash<Nz::GraphicsComponent>::value())
+		.func<&Nz::ReflectComponent<Nz::EditorPropertyInspector<Nz::EditorRenderer>, Nz::GraphicsComponent>>(entt::hashed_string("Reflect"));
 	entt::meta<Nz::EditorNameComponent>()
 		.type(entt::type_hash<Nz::EditorNameComponent>::value())
 		.func<&Nz::ReflectComponent<Nz::EditorPropertyInspector<Nz::EditorRenderer>, Nz::EditorNameComponent>>(entt::hashed_string("Reflect"));
