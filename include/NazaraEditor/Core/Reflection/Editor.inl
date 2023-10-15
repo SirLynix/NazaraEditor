@@ -13,7 +13,7 @@ namespace Nz
 	}
 
 	template <typename TPropertyDetail>
-	template <typename T> void EditorPropertyInspector<TPropertyDetail>::AddPropertyNoWrapper(T& prop, const std::string& name, const std::string& tooltip)
+	template <typename T> void EditorPropertyInspector<TPropertyDetail>::AddPropertyNoWrapper(T& prop, const std::string& /*name*/, const std::string& /*tooltip*/)
 	{
 		TypeReflect<T>::Reflect(*this, prop);
 	}

@@ -92,7 +92,7 @@ namespace Nz
 		}
 
 		template <AngleUnit Unit, typename T>
-		inline void End(Nz::Angle<Unit, T>& obj) {}
+		inline void End(Nz::Angle<Unit, T>& /*obj*/) {}
 	}
 
 }
