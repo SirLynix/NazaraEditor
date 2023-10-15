@@ -34,7 +34,7 @@ namespace Nz
 		}
 	}
 
-	void EditorWindow::AddMenuAction(const std::string& path, const std::string& shortcut, ActionCallback callback)
+	void EditorWindow::AddMenuAction(const std::string& path, const std::string& shortcut, ActionCallback callback, const std::shared_ptr<Nz::Texture>& icon)
 	{
 		std::vector<std::string_view> v;
 		Nz::SplitString(path, "|", [&](std::string_view str) { v.push_back(str); return true; });
@@ -45,7 +45,7 @@ namespace Nz
 
 		MenuList& parent = GetOrCreateMenuHierarchy(v);
 
-		parent.entries.push_back(MenuAction{ leaf, shortcut, callback});
+		parent.entries.push_back(MenuAction{ leaf, shortcut, icon, callback});
 	}
 
 	void EditorWindow::AddMenuSeparator(const std::string& path)
@@ -77,6 +77,11 @@ namespace Nz
 					ImGui::Separator();
 				},
 				[](const MenuAction& arg) {
+					if (arg.icon)
+					{
+						ImGui::Image(arg.icon.get(), Nz::Vector2{ 14, 14 });
+						ImGui::SameLine();
+					}
 					if (ImGui::MenuItem(arg.label.c_str(), arg.shortcut.c_str()))
 						arg.callback();
 				},

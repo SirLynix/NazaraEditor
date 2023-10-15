@@ -22,7 +22,7 @@ namespace Nz
 
 		virtual void OnRenderImgui() override;
 
-		void AddMenuAction(const std::string& path, const std::string& shortcut, ActionCallback callback);
+		void AddMenuAction(const std::string& path, const std::string& shortcut, ActionCallback callback, const std::shared_ptr<Nz::Texture>& icon = {});
 		void AddMenuSeparator(const std::string& path);
 
 		EditorBaseApplication* GetApplication() { return m_application; }
@@ -44,6 +44,7 @@ namespace Nz
 		{
 			std::string label;
 			std::string shortcut;
+			std::shared_ptr<Nz::Texture> icon;
 			ActionCallback callback;
 		};
 
