@@ -73,7 +73,5 @@ int WinMain(int argc, char* argv[])
 		.type(entt::type_hash<Nz::EditorNameComponent>::value())
 		.func<&Nz::ReflectComponent<Nz::EditorPropertyInspector<Nz::EditorRenderer>, Nz::EditorNameComponent>>(entt::hashed_string("Reflect"));
 
-	entt::handle entity = app.CreateEntity("TestEntity");
-
 	return app.Run();
 }

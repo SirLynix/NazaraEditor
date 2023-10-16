@@ -25,8 +25,6 @@ namespace Nz
 		Nz::Imgui::Instance()->Init(window);
 		ImGui::EnsureContextOnThisThread();
 
-		NewLevel();
-
 		AddUpdaterFunc(Interval{ Nz::Time::Milliseconds(16) }, [&](Nz::Time elapsed) {
 			if (!window.IsOpen())
 				return;
