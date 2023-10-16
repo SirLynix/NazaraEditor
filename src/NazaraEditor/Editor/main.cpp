@@ -13,6 +13,7 @@
 #include <NazaraEditor/Editor/UI/InspectorWindow.hpp>
 #include <NazaraEditor/Editor/UI/LevelWindow.hpp>
 #include <NazaraEditor/Editor/UI/MainWindow.hpp>
+#include <NazaraEditor/Editor/UI/OutputWindow.hpp>
 
 NAZARA_REQUEST_DEDICATED_GPU()
 
@@ -34,6 +35,7 @@ int WinMain(int argc, char* argv[])
 	app.RegisterWindow<NzEditor::AssetsWindow>();
 	app.RegisterWindow<NzEditor::LevelWindow>();
 	app.RegisterWindow<NzEditor::InspectorWindow>();
+	app.RegisterWindow<NzEditor::OutputWindow>();
 
 	entt::meta<Nz::NodeComponent>()
 		.type(entt::type_hash<Nz::NodeComponent>::value())
