@@ -25,6 +25,7 @@ int WinMain(int argc, char* argv[])
 	NazaraUnused(argc);
 	NazaraUnused(argv);
 
+	Nz::EditorLogger logger;
 	NzEditor::Application app;
 
 	ImGui::EnsureContextOnThisThread();
