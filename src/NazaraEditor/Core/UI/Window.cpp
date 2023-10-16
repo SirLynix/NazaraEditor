@@ -9,6 +9,10 @@ namespace Nz
 		, m_windowName(name)
 	{
 		Nz::Imgui::Instance()->AddHandler(this);
+		app->OnActionRegistered.Connect([this](auto&& prop) {
+			auto name = prop.className;
+			AddMenuAction(prop.path, prop.shortcut.ToString(), [name]() { Nz::ActionStack::Instance()->ExecuteAction(name); }, prop.icon);
+		});
 	}
 
 	EditorWindow::~EditorWindow()

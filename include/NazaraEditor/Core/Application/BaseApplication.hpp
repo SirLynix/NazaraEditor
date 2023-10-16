@@ -8,6 +8,7 @@
 
 #include <NazaraEditor/Core/Core.hpp>
 #include <NazaraEditor/Core/Application/Action.hpp>
+#include <NazaraEditor/Core/Application/ActionStack.hpp>
 #include <NazaraEditor/Core/Application/Level.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
 #include <NazaraImgui/NazaraImgui.hpp>
@@ -29,6 +30,8 @@ namespace Nz
 		NazaraSignal(OnEntitySelected, entt::handle);
 		NazaraSignal(OnEntityDeselected, entt::handle);
 
+		// Editor events
+		NazaraSignal(OnActionRegistered, const EditorAction::Properties&);
 		EditorBaseApplication();
 		virtual ~EditorBaseApplication() = default;
 
@@ -46,11 +49,19 @@ namespace Nz
 			m_windows.push_back(std::make_unique<T>(this));
 		}
 
+		template <typename TAction>
+		void RegisterAction(EditorAction::Properties properties)
+		{
+			properties.className = TAction::GetClassName();
+			m_actionStack.RegisterAction<TAction>(properties);
+			OnActionRegistered(properties);
+		}
+
 	private:
 		std::unique_ptr<Nz::WindowSwapchain> m_windowSwapchain;
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
-		std::vector<std::unique_ptr<EditorAction>> m_actions;
 
+		Nz::ActionStack m_actionStack;
 		Nz::Level m_level;
 	};
 }

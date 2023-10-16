@@ -6,24 +6,30 @@
 
 #include <Nazara/Renderer.hpp>
 
+#include <memory>
 #include <string>
 
 namespace Nz
 {
-	class EditorAction
+	class NAZARAEDITOR_CORE_API EditorAction
 	{
 	public:
 		struct Properties
 		{
-			std::string name;
+			std::string className;
 			std::string description;
+			std::string path;
+			std::string category;
 			Nz::Shortcut shortcut;
 
-			Nz::Texture* icon;
+			std::shared_ptr<Nz::Texture> icon;
 		};
 
 		EditorAction(const Properties& properties)
 			: m_properties(std::make_shared<Properties>(properties))
+		{}
+		EditorAction(const std::shared_ptr<Properties>&properties)
+			: m_properties(properties)
 		{}
 		virtual ~EditorAction() = default;
 
@@ -32,15 +38,35 @@ namespace Nz
 		EditorAction(EditorAction&&) = delete;
 		EditorAction& operator=(EditorAction&&) = delete;
 
-		virtual void Execute() = 0;
-		virtual void Revert() = 0;
-		virtual EditorAction* Clone() const = 0;
+		virtual std::unique_ptr<EditorAction> Clone() const = 0;
+		virtual const std::string& GetName() const = 0;
+		virtual bool IsUndoRedoable() const = 0;
+		static const char* GetClassName() { return "EditorAction"; }
+
+		virtual void Execute() {};
+		virtual void Revert() {};
+
+		template <typename TAction>
+		TAction* As() { return static_cast<TAction*>(this); }
+
+		template <typename TAction>
+		const TAction* As() const { return static_cast<const TAction*>(this); }
 
 	protected:
-		EditorAction(const std::shared_ptr<Properties>& properties)
-			: m_properties(properties)
-		{}
-
 		std::shared_ptr<Properties> m_properties;
 	};
+
+#define EDITORACTION_BODY(Typename, bUndoRedoable) \
+	public: \
+		Typename(const Properties& properties) \
+			: EditorAction(properties) \
+		{} \
+		Typename(const std::shared_ptr<Properties>& properties) \
+			: EditorAction(properties) \
+		{} \
+		~Typename() = default; \
+		std::unique_ptr<EditorAction> Clone() const override { return std::make_unique<Typename>(m_properties); } \
+		const std::string& GetName() const override { return m_properties->className; } \
+		bool IsUndoRedoable() const override { return bUndoRedoable; } \
+		static const char* GetClassName() { return #Typename; }
 }
