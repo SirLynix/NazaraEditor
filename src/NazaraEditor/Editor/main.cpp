@@ -43,6 +43,20 @@ int WinMain(int argc, char* argv[])
 	app.RegisterWindow<NzEditor::InspectorWindow>();
 	app.RegisterWindow<NzEditor::OutputWindow>();
 
+	Nz::TextureParams texParams;
+	texParams.renderDevice = Nz::Graphics::Instance()->GetRenderDevice();
+	texParams.loadFormat = Nz::PixelFormat::RGBA8_SRGB;
+	app.RegisterAction<Nz::EditorAction_Log_Clear>({
+			.description = "Clears log output",
+			.path = "Clear",
+			.category = "Output",
+		});
+	app.RegisterAction<Nz::EditorAction_Log_CopyToClipboard>({
+			.description = "Copies log output to clipboard",
+			.path = "Copy to Clipboard",
+			.category = "Output",
+		});
+
 	entt::meta<Nz::NodeComponent>()
 		.type(entt::type_hash<Nz::NodeComponent>::value())
 		.func<&Nz::ReflectComponent<Nz::EditorPropertyInspector<Nz::EditorRenderer>, Nz::NodeComponent>>(entt::hashed_string("Reflect"));
