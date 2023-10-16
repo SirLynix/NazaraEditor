@@ -3,7 +3,7 @@
 namespace NzEditor
 {
 	AssetsWindow::AssetsWindow(Nz::EditorBaseApplication* app)
-		: Nz::EditorWindow(app, "Assets Browser")
+		: Nz::EditorWindow(app, "Assets Browser", { "Assets" })
 	{
 		BuildMenuBar();
 	}

@@ -14,7 +14,7 @@ namespace Nz
 		: private Nz::ImguiHandler
 	{
 	public:
-		EditorWindow(EditorBaseApplication* app, const std::string& name = "");
+		EditorWindow(EditorBaseApplication* app, const std::string& name = "", const std::vector<std::string>& categories = {});
 		virtual ~EditorWindow();
 
 		EditorWindow(const EditorWindow&) = delete;
@@ -28,6 +28,8 @@ namespace Nz
 		EditorBaseApplication* GetApplication() { return m_application; }
 		const EditorBaseApplication* GetApplication() const { return m_application; }
 
+		bool HasMenuCategory(const std::string& category) const;
+
 	protected:
 		void DrawMenus();
 
@@ -39,6 +41,7 @@ namespace Nz
 
 		EditorBaseApplication* m_application;
 		std::string m_windowName;
+		std::vector<std::string> m_categories;
 
 		struct MenuAction
 		{

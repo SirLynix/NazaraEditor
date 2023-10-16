@@ -4,12 +4,18 @@
 
 namespace Nz
 {
-	EditorWindow::EditorWindow(EditorBaseApplication* app, const std::string& name)
+	EditorWindow::EditorWindow(EditorBaseApplication* app, const std::string& name, const std::vector<std::string>& categories)
 		: m_application(app)
 		, m_windowName(name)
+		, m_categories(categories)
 	{
 		Nz::Imgui::Instance()->AddHandler(this);
+
+		// Automatically add actions to menus
 		app->OnActionRegistered.Connect([this](auto&& prop) {
+			if (!HasMenuCategory(prop.category))
+				return;
+
 			auto name = prop.className;
 			AddMenuAction(prop.path, prop.shortcut.ToString(), [name]() { Nz::ActionStack::Instance()->ExecuteAction(name); }, prop.icon);
 		});
@@ -58,6 +64,12 @@ namespace Nz
 		Nz::SplitString(path, "|", [&](std::string_view str) { v.push_back(str); return true; });
 		MenuList& parent = GetOrCreateMenuHierarchy(v);
 		parent.entries.push_back(MenuSeparator{});
+	}
+
+	bool EditorWindow::HasMenuCategory(const std::string& category) const
+	{
+		return std::find_if(m_categories.begin(), m_categories.end(), [&category](auto&& cat) { return cat == category; })
+			!= m_categories.end();
 	}
 
 	void EditorWindow::DrawMenus()

@@ -2,8 +2,8 @@
 
 namespace Nz
 {
-	EditorMainWindow::EditorMainWindow(EditorBaseApplication* app, const std::string& name)
-		: EditorWindow(app, name)
+	EditorMainWindow::EditorMainWindow(EditorBaseApplication* app, const std::string& name, const std::vector<std::string>& categories)
+		: EditorWindow(app, name, categories)
 	{ }
 
 	void EditorMainWindow::OnRenderImgui()

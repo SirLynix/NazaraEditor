@@ -8,7 +8,7 @@ namespace Nz
 		: public EditorWindow
 	{
 	public:
-		EditorMainWindow(EditorBaseApplication* app, const std::string& name = "");
+		EditorMainWindow(EditorBaseApplication* app, const std::string& name = "", const std::vector<std::string>& categories = {});
 		virtual ~EditorMainWindow() = default;
 
 	protected:
