@@ -35,6 +35,8 @@ namespace Nz
 		EditorBaseApplication();
 		virtual ~EditorBaseApplication() = default;
 
+		void SetResourceFolder(const std::filesystem::path& path) { m_resourceFolder = path; }
+		std::filesystem::path GetResourceFolder() const { return m_resourceFolder; }
 		Nz::Level& GetLevel();
 		bool NewLevel();
 		bool CloseLevel();
@@ -61,6 +63,7 @@ namespace Nz
 		std::unique_ptr<Nz::WindowSwapchain> m_windowSwapchain;
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
 
+		std::filesystem::path m_resourceFolder;
 		Nz::ActionStack m_actionStack;
 		Nz::Level m_level;
 	};

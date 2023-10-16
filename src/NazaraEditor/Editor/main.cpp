@@ -27,7 +27,13 @@ int WinMain(int argc, char* argv[])
 	NazaraUnused(argv);
 
 	Nz::EditorLogger logger;
+
+	std::filesystem::path resourceDir = "assets/editor";
+	if (!std::filesystem::is_directory(resourceDir) && std::filesystem::is_directory("../.." / resourceDir))
+			resourceDir = "../.." / resourceDir;
+
 	NzEditor::Application app;
+	app.SetResourceFolder(resourceDir);
 
 	ImGui::EnsureContextOnThisThread();
 
