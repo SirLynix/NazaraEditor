@@ -1,4 +1,5 @@
 #include <NazaraEditor/Core/UI/Window.hpp>
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
 #include <Nazara/Core/StringExt.hpp>
 
