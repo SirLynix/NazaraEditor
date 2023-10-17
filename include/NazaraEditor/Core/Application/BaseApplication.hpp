@@ -33,7 +33,9 @@ namespace Nz
 		// Editor events
 		NazaraSignal(OnActionRegistered, const EditorAction::Properties&);
 		EditorBaseApplication();
-		virtual ~EditorBaseApplication() = default;
+		virtual ~EditorBaseApplication();
+
+		static EditorBaseApplication* Instance();
 
 		void SetResourceFolder(const std::filesystem::path& path) { m_resourceFolder = path; }
 		std::filesystem::path GetResourceFolder() const { return m_resourceFolder; }
@@ -60,6 +62,7 @@ namespace Nz
 		}
 
 	private:
+		static EditorBaseApplication* s_instance;
 		std::unique_ptr<Nz::WindowSwapchain> m_windowSwapchain;
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
 

@@ -3,9 +3,14 @@
 
 namespace Nz
 {
+	EditorBaseApplication* EditorBaseApplication::s_instance = nullptr;
+
 	EditorBaseApplication::EditorBaseApplication()
 		: m_level(this)
 	{
+		NazaraAssert(s_instance == nullptr, "EditorBaseApplication already exists");
+		s_instance = this;
+
 		auto& windowing = AddComponent<Nz::AppWindowingComponent>();
 
 		std::shared_ptr<Nz::RenderDevice> device = Nz::Graphics::Instance()->GetRenderDevice();
@@ -41,6 +46,16 @@ namespace Nz
 
 			frame.Present();
 		});
+	}
+
+	EditorBaseApplication::~EditorBaseApplication()
+	{
+		s_instance = nullptr;
+	}
+
+	EditorBaseApplication* EditorBaseApplication::Instance()
+	{
+		return s_instance;
 	}
 
 	Nz::Level& EditorBaseApplication::GetLevel()
