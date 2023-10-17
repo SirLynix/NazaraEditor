@@ -10,6 +10,7 @@
 #include <NazaraEditor/Core/Application/Action.hpp>
 #include <NazaraEditor/Core/Application/ActionStack.hpp>
 #include <NazaraEditor/Core/Application/Level.hpp>
+#include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
 #include <NazaraImgui/NazaraImgui.hpp>
 
@@ -71,6 +72,8 @@ namespace Nz
 
 		std::filesystem::path m_resourceFolder;
 		Nz::ActionStack m_actionStack;
+		Nz::EditorPopupManager m_popupManager;
+
 		Nz::Level m_level;
 	};
 }

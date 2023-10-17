@@ -36,6 +36,8 @@ namespace Nz
 
 			window.ProcessEvents();
 
+			m_popupManager.Update();
+
 			Nz::RenderFrame frame = m_windowSwapchain->AcquireFrame();
 			if (!frame)
 				return;
