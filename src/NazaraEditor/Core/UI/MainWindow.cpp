@@ -1,4 +1,4 @@
-#include <NazaraEditor/Core/UI/MainWindow.h>
+#include <NazaraEditor/Core/UI/MainWindow.hpp>
 
 namespace Nz
 {
