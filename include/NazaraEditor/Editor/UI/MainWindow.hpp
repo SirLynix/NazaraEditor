@@ -7,18 +7,5 @@ namespace NzEditor
 	{
 	public:
 		MainWindow(Nz::EditorBaseApplication* app);
-
-		bool Quit();
-
-		bool NewLevel();
-		bool OpenLevel();
-		bool SaveLevel();
-
-		bool NewProject();
-		bool OpenProject();
-		bool SaveProject();
-
-	protected:
-		void BuildMenuBar();
 	};
 }

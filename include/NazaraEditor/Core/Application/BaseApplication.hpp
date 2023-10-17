@@ -32,6 +32,7 @@ namespace Nz
 
 		// Editor events
 		NazaraSignal(OnActionRegistered, const EditorAction::Properties&);
+
 		EditorBaseApplication();
 		virtual ~EditorBaseApplication();
 
@@ -64,6 +65,7 @@ namespace Nz
 
 	private:
 		static EditorBaseApplication* s_instance;
+
 		std::unique_ptr<Nz::WindowSwapchain> m_windowSwapchain;
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
 
