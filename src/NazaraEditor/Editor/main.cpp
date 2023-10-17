@@ -46,6 +46,14 @@ int WinMain(int argc, char* argv[])
 	Nz::TextureParams texParams;
 	texParams.renderDevice = Nz::Graphics::Instance()->GetRenderDevice();
 	texParams.loadFormat = Nz::PixelFormat::RGBA8_SRGB;
+
+	app.RegisterAction<Nz::EditorAction_Level_New>({
+			.description = "Create new level",
+			.path = "File|Level|New",
+			.category = "General",
+			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::N, true, true),
+			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "file_new.png", texParams)
+		});
 	app.RegisterAction<Nz::EditorAction_Log_Clear>({
 			.description = "Clears log output",
 			.path = "Clear",

@@ -3,6 +3,7 @@
 #include <NazaraEditor/Core/Core.hpp>
 #include <NazaraEditor/Core/Application/Action.hpp>
 #include <NazaraEditor/Core/Application/ActionStack.hpp>
+#include <NazaraEditor/Core/Application/Actions/EditorAction_Level_New.hpp>
 #include <NazaraEditor/Core/Application/Actions/EditorAction_Log_Clear.hpp>
 #include <NazaraEditor/Core/Application/Actions/EditorAction_Log_CopyToClipboard.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>

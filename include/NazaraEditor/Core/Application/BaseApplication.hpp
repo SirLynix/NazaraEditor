@@ -39,10 +39,11 @@ namespace Nz
 
 		void SetResourceFolder(const std::filesystem::path& path) { m_resourceFolder = path; }
 		std::filesystem::path GetResourceFolder() const { return m_resourceFolder; }
+
 		Nz::Level& GetLevel();
-		bool NewLevel();
-		bool CloseLevel();
-		bool OpenLevel(const std::filesystem::path& path);
+		virtual bool NewLevel();
+		virtual bool CloseLevel() { return false; }
+		virtual bool OpenLevel(const std::filesystem::path& /*path*/) { return false; }
 
 		entt::handle CreateEntity(const std::string& name);
 
