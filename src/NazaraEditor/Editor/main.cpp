@@ -64,6 +64,12 @@ int WinMain(int argc, char* argv[])
 			.path = "Copy to Clipboard",
 			.category = "Output",
 		});
+	app.RegisterAction<Nz::EditorAction_Quit>({
+			.description = "Exits the editor",
+			.path = "File|Exit",
+			.category = "General",
+			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::F4, false, false, true),
+		});
 
 	entt::meta<Nz::NodeComponent>()
 		.type(entt::type_hash<Nz::NodeComponent>::value())
