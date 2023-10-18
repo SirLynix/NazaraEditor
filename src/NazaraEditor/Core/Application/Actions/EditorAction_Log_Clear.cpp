@@ -1,10 +1,10 @@
 #include <NazaraEditor/Core/Application/Actions/EditorAction_Log_Clear.hpp>
-#include <NazaraEditor/Core/Application/EditorLogger.hpp>
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
 namespace Nz
 {
 	void EditorAction_Log_Clear::Execute()
 	{
-		Nz::EditorLogger::Instance()->Clear();
+		Nz::EditorBaseApplication::Instance()->GetLogger().Clear();
 	}
 }

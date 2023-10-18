@@ -1,5 +1,6 @@
 #include <NazaraEditor/Editor/UI/OutputWindow.hpp>
 
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/Application/EditorLogger.hpp>
 
 namespace NzEditor
@@ -15,7 +16,7 @@ namespace NzEditor
 	{
 		if (ImGui::BeginChild("scrolling"))
 		{
-			for (auto&& line : Nz::EditorLogger::Instance()->GetLog())
+			for (auto&& line : Nz::EditorBaseApplication::Instance()->GetLogger().GetLog())
 				ImGui::TextUnformatted(line.c_str());
 
 			if (m_bScrollToBottom)

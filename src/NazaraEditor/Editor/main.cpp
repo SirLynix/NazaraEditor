@@ -34,6 +34,7 @@ int WinMain(int argc, char* argv[])
 
 	NzEditor::Application app;
 	app.SetResourceFolder(resourceDir);
+	app.SetLogger(logger);
 
 	ImGui::EnsureContextOnThisThread();
 

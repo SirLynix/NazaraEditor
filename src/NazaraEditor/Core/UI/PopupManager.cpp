@@ -1,4 +1,5 @@
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
 namespace Nz
 {
@@ -29,7 +30,7 @@ namespace Nz
 					if (choice.callback)
 						choice.callback();
 
-					EditorPopupManager::Instance()->DestroyPopup(m_id);
+					EditorBaseApplication::Instance()->GetPopupManager().DestroyPopup(m_id);
 				}
 				ImGui::SameLine();
 			}
@@ -38,23 +39,9 @@ namespace Nz
 		}
 	}
 
-	EditorPopupManager* EditorPopupManager::s_instance = nullptr;
-	EditorPopupManager* EditorPopupManager::Instance()
-	{
-		return s_instance;
-	}
-
 	EditorPopupManager::EditorPopupManager()
 		: m_currentIndex(0)
-	{
-		NazaraAssert(s_instance == nullptr, "EditorPopupManager already exists");
-		s_instance = this;
-	}
-
-	EditorPopupManager::~EditorPopupManager()
-	{
-		s_instance = nullptr;
-	}
+	{}
 
 	void EditorPopupManager::Update()
 	{

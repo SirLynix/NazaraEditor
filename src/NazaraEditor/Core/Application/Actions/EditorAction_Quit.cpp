@@ -6,7 +6,7 @@ namespace Nz
 {
 	void EditorAction_Quit::Execute()
 	{
-		Nz::EditorPopupManager::Instance()->CreatePopup({
+		Nz::EditorBaseApplication::Instance()->GetPopupManager().CreatePopup({
 			.title = "Warning",
 			.description = "Are you sure you want to exit? All unsaved work will be discarded",
 			.choices = {

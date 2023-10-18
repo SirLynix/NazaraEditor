@@ -9,6 +9,7 @@
 #include <NazaraEditor/Core/Core.hpp>
 #include <NazaraEditor/Core/Application/Action.hpp>
 #include <NazaraEditor/Core/Application/ActionStack.hpp>
+#include <NazaraEditor/Core/Application/EditorLogger.hpp>
 #include <NazaraEditor/Core/Application/Level.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
@@ -38,9 +39,18 @@ namespace Nz
 		virtual ~EditorBaseApplication();
 
 		static EditorBaseApplication* Instance();
+		
+		ActionStack& GetActionStack() { return m_actionStack; }
+		const ActionStack& GetActionStack() const { return m_actionStack; }
+		EditorPopupManager& GetPopupManager() { return m_popupManager; }
+		const EditorPopupManager& GetPopupManager() const { return m_popupManager; }
+		EditorLogger& GetLogger() { return *m_logger; }
+		const EditorLogger& GetLogger() const { return *m_logger; }
 
 		void SetResourceFolder(const std::filesystem::path& path) { m_resourceFolder = path; }
 		std::filesystem::path GetResourceFolder() const { return m_resourceFolder; }
+
+		void SetLogger(EditorLogger& logger) { m_logger = &logger; }
 
 		Nz::Level& GetLevel();
 		virtual bool NewLevel();
@@ -73,6 +83,7 @@ namespace Nz
 		std::filesystem::path m_resourceFolder;
 		Nz::ActionStack m_actionStack;
 		Nz::EditorPopupManager m_popupManager;
+		Nz::EditorLogger* m_logger;
 
 		Nz::Level m_level;
 	};

@@ -38,8 +38,6 @@ namespace Nz
 	class NAZARAEDITOR_CORE_API EditorPopupManager
 	{
 	public:
-		static EditorPopupManager* Instance();
-
 		void Update();
 
 		uint64_t CreatePopup(const EditorPopupParameters& parameters);
@@ -47,7 +45,6 @@ namespace Nz
 
 	private:
 		EditorPopupManager();
-		~EditorPopupManager();
 
 		EditorPopupManager(const EditorPopupManager&) = delete;
 		EditorPopupManager& operator=(const EditorPopupManager&) = delete;
@@ -61,7 +58,6 @@ namespace Nz
 		std::vector<std::unique_ptr<EditorPopup>> m_popups;
 		std::vector<uint64_t> m_popupsToDelete;
 
-		static EditorPopupManager* s_instance;
 		friend class EditorBaseApplication;
 	};
 }

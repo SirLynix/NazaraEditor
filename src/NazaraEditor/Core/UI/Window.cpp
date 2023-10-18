@@ -18,7 +18,7 @@ namespace Nz
 				return;
 
 			auto name = prop.className;
-			AddMenuAction(prop.path, prop.shortcut.ToString(), [name]() { Nz::ActionStack::Instance()->ExecuteAction(name); }, prop.icon);
+			AddMenuAction(prop.path, prop.shortcut.ToString(), [name]() { Nz::EditorBaseApplication::Instance()->GetActionStack().ExecuteAction(name); }, prop.icon);
 		});
 	}
 

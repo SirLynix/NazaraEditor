@@ -11,8 +11,6 @@ namespace Nz
 	class NAZARAEDITOR_CORE_API ActionStack final
 	{
 	public:
-		static ActionStack* Instance();
-
 		void ExecuteAction(const std::string& name)
 		{
 			ExecuteAction(CreateAction(name));
@@ -57,10 +55,9 @@ namespace Nz
 
 	protected:
 		ActionStack();
-		~ActionStack();
 
 		ActionStack(ActionStack&) = delete;
-		ActionStack& operator=(ActionStack&) = delete;
+		ActionStack& operator=(const ActionStack&) = delete;
 		ActionStack(ActionStack&&) = delete;
 		ActionStack& operator=(ActionStack&&) = delete;
 
@@ -69,8 +66,6 @@ namespace Nz
 		{
 			m_availableActions.push_back(std::make_unique<TAction>(properties));
 		}
-
-		static ActionStack* s_instance;
 
 		int64_t m_currentIndex;
 		std::vector<std::shared_ptr<EditorAction>> m_undoRedoStack;

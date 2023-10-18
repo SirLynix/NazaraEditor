@@ -1,4 +1,5 @@
 #include <NazaraEditor/Core/Application/Actions/EditorAction_Log_CopyToClipboard.hpp>
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/Application/EditorLogger.hpp>
 
 #include <Nazara/Platform.hpp>
@@ -9,7 +10,7 @@ namespace Nz
 {
 	void EditorAction_Log_CopyToClipboard::Execute()
 	{
-		auto& lines = Nz::EditorLogger::Instance()->GetLog();
+		auto& lines = Nz::EditorBaseApplication::Instance()->GetLogger().GetLog();
 		if (lines.empty())
 			return;
 
