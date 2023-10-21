@@ -70,7 +70,8 @@ namespace Nz
 		template <typename TAction, typename... TArgs>
 		void RegisterAction(EditorAction::Properties properties, TArgs&&... args)
 		{
-			properties.className = TAction::GetClassName();
+			if (properties.className.empty())
+				properties.className = TAction::GetClassName();
 			m_actionStack.RegisterAction<TAction>(properties, std::forward<TArgs...>(args)...);
 			OnActionRegistered(properties);
 		}
