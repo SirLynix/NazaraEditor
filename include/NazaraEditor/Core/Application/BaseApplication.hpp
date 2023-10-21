@@ -67,11 +67,11 @@ namespace Nz
 			m_windows.push_back(std::make_unique<T>(this));
 		}
 
-		template <typename TAction>
-		void RegisterAction(EditorAction::Properties properties)
+		template <typename TAction, typename... TArgs>
+		void RegisterAction(EditorAction::Properties properties, TArgs&&... args)
 		{
 			properties.className = TAction::GetClassName();
-			m_actionStack.RegisterAction<TAction>(properties);
+			m_actionStack.RegisterAction<TAction>(properties, std::forward<TArgs...>(args)...);
 			OnActionRegistered(properties);
 		}
 

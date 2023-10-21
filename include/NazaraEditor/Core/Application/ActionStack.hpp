@@ -61,10 +61,10 @@ namespace Nz
 		ActionStack(ActionStack&&) = delete;
 		ActionStack& operator=(ActionStack&&) = delete;
 
-		template <typename TAction>
-		void RegisterAction(const EditorAction::Properties& properties)
+		template <typename TAction, typename... TArgs>
+		void RegisterAction(const EditorAction::Properties& properties, TArgs&&... args)
 		{
-			m_availableActions.push_back(std::make_unique<TAction>(properties));
+			m_availableActions.push_back(std::make_unique<TAction>(properties, std::forward<TArgs...>(args)...));
 		}
 
 		int64_t m_currentIndex;
