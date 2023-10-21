@@ -1,6 +1,7 @@
 #pragma once
 
 #include <NazaraEditor/Core/Core.hpp>
+#include <NazaraLocalization/LocalizedText.hpp>
 
 #include <memory>
 #include <vector>
@@ -11,11 +12,11 @@ namespace Nz
 	{
 		struct Choice
 		{
-			std::string name;
+			Nz::LocalizedText name;
 			std::function<void(void)> callback;
 		};
-		std::string title;
-		std::string description;
+		Nz::LocalizedText title;
+		Nz::LocalizedText description;
 		std::vector<Choice> choices;
 	};
 

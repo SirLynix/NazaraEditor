@@ -18,8 +18,10 @@ namespace Nz
 
 	void EditorPopup::OnRenderImgui()
 	{
-		ImGui::OpenPopup(m_parameters.title.c_str());
-		if (ImGui::BeginPopupModal(m_parameters.title.c_str(), nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
+		std::string name = std::format("{}###{}", m_parameters.title.ToString(), m_parameters.title.GetBaseString());
+
+		ImGui::OpenPopup(name.c_str());
+		if (ImGui::BeginPopupModal(name.c_str(), nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoCollapse))
 		{
 			ImGui::Text(m_parameters.description.c_str());
 

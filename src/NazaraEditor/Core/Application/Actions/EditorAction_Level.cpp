@@ -7,15 +7,15 @@ namespace Nz
 	void EditorAction_Level_New::Execute()
 	{
 		Nz::EditorBaseApplication::Instance()->GetPopupManager().CreatePopup({
-			.title = "Warning",
-			.description = "Are you sure you want to create a new level?",
+			.title = "LOC_EDITOR_POPUP_CREATE_LEVEL_TITLE",
+			.description = "LOC_EDITOR_POPUP_CREATE_LEVEL_DESC",
 			.choices = {
 				{
-					.name = "Yes",
+					.name = "LOC_EDITOR_YES",
 					.callback = []() { Nz::EditorBaseApplication::Instance()->NewLevel(); }
 				},
 				{
-					.name = "No"
+					.name = "LOC_EDITOR_NO"
 				}
 			}
 			});
