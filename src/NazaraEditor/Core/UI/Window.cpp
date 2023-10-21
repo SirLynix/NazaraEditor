@@ -5,7 +5,7 @@
 
 namespace Nz
 {
-	EditorWindow::EditorWindow(EditorBaseApplication* app, const std::string& name, const std::vector<std::string>& categories)
+	EditorWindow::EditorWindow(EditorBaseApplication* app, const Nz::LocalizedText& name, const std::vector<std::string>& categories)
 		: m_application(app)
 		, m_windowName(name)
 		, m_categories(categories)
@@ -18,7 +18,7 @@ namespace Nz
 				return;
 
 			auto name = prop.className;
-			AddMenuAction(prop.path, prop.shortcut.ToString(), [name]() { Nz::EditorBaseApplication::Instance()->GetActionStack().ExecuteAction(name); }, prop.icon);
+			AddMenuAction(prop.path.ToString(), prop.shortcut.ToString(), [name]() { Nz::EditorBaseApplication::Instance()->GetActionStack().ExecuteAction(name); }, prop.icon);
 		});
 	}
 

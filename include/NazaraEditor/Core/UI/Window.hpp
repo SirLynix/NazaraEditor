@@ -3,6 +3,7 @@
 #include <NazaraUtils/Prerequisites.hpp>
 #include <NazaraEditor/Core/Config.hpp>
 #include <NazaraImgui/NazaraImgui.hpp>
+#include <NazaraLocalization/LocalizedText.hpp>
 
 namespace Nz
 {
@@ -14,7 +15,7 @@ namespace Nz
 		: private Nz::ImguiHandler
 	{
 	public:
-		EditorWindow(EditorBaseApplication* app, const std::string& name = "", const std::vector<std::string>& categories = {});
+		EditorWindow(EditorBaseApplication* app, const Nz::LocalizedText& name, const std::vector<std::string>& categories = {});
 		virtual ~EditorWindow();
 
 		EditorWindow(const EditorWindow&) = delete;
@@ -40,7 +41,7 @@ namespace Nz
 	private:
 
 		EditorBaseApplication* m_application;
-		std::string m_windowName;
+		Nz::LocalizedText m_windowName;
 		std::vector<std::string> m_categories;
 
 		struct MenuAction

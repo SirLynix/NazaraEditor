@@ -2,7 +2,7 @@
 
 namespace Nz
 {
-	EditorMainWindow::EditorMainWindow(EditorBaseApplication* app, const std::string& name, const std::vector<std::string>& categories)
+	EditorMainWindow::EditorMainWindow(EditorBaseApplication* app, const Nz::LocalizedText& name, const std::vector<std::string>& categories)
 		: EditorWindow(app, name, categories)
 	{ }
 

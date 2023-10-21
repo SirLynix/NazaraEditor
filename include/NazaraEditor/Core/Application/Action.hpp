@@ -5,6 +5,7 @@
 #include <NazaraEditor/Core/Application/Shortcut.hpp>
 
 #include <Nazara/Renderer.hpp>
+#include <NazaraLocalization/LocalizedText.hpp>
 
 #include <memory>
 #include <string>
@@ -17,8 +18,8 @@ namespace Nz
 		struct Properties
 		{
 			std::string className;
-			std::string description;
-			std::string path;
+			Nz::LocalizedText description;
+			Nz::LocalizedText path;
 			std::string category;
 			Nz::Shortcut shortcut;
 

@@ -5,7 +5,7 @@
 namespace NzEditor
 {
 	InspectorWindow::InspectorWindow(Nz::EditorBaseApplication* app)
-		: Nz::EditorWindow(app, "Inspector")
+		: Nz::EditorWindow(app, Nz::LocalizedText("LOC_EDITOR_WINDOW_INSPECTOR_TITLE"))
 	{
 		app->OnEntitySelected.Connect(this, &InspectorWindow::OnEntitySelected);
 	}

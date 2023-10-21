@@ -36,6 +36,9 @@ int WinMain(int argc, char* argv[])
 	app.SetResourceFolder(resourceDir);
 	app.SetLogger(logger);
 
+	Nz::Localization::Instance()->LoadLocalizationFile(resourceDir / "localization.csv");
+	Nz::Localization::Instance()->SetLocale("en-US");
+
 	ImGui::EnsureContextOnThisThread();
 
 	app.RegisterWindow<NzEditor::MainWindow>();
@@ -49,25 +52,25 @@ int WinMain(int argc, char* argv[])
 	texParams.loadFormat = Nz::PixelFormat::RGBA8_SRGB;
 
 	app.RegisterAction<Nz::EditorAction_Level_New>({
-			.description = "Create new level",
-			.path = "File|Level|New",
+			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_LEVEL_NEW_DESC"),
+			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_LEVEL_NEW_PATH"),
 			.category = "General",
 			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::N, true, true),
 			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "file_new.png", texParams)
 		});
 	app.RegisterAction<Nz::EditorAction_Log_Clear>({
-			.description = "Clears log output",
-			.path = "Clear",
+			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_CLEAR_DESC"),
+			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_CLEAR_PATH"),
 			.category = "Output",
 		});
 	app.RegisterAction<Nz::EditorAction_Log_CopyToClipboard>({
-			.description = "Copies log output to clipboard",
-			.path = "Copy to Clipboard",
+			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_COPY_DESC"),
+			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_COPY_PATH"),
 			.category = "Output",
 		});
 	app.RegisterAction<Nz::EditorAction_Quit>({
-			.description = "Exits the editor",
-			.path = "File|Exit",
+			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_QUIT_DESC"),
+			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_QUIT_PATH"),
 			.category = "General",
 			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::F4, false, false, true),
 		});

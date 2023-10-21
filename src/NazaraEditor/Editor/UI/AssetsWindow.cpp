@@ -3,7 +3,7 @@
 namespace NzEditor
 {
 	AssetsWindow::AssetsWindow(Nz::EditorBaseApplication* app)
-		: Nz::EditorWindow(app, "Assets Browser", { "Assets" })
+		: Nz::EditorWindow(app, Nz::LocalizedText("LOC_EDITOR_WINDOW_ASSET_BROWSER_TITLE"), { "Assets" })
 	{
 		BuildMenuBar();
 	}

@@ -14,11 +14,12 @@
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
 #include <NazaraImgui/NazaraImgui.hpp>
+#include <NazaraLocalization/Localization.hpp>
 
 namespace Nz
 {
 	class NAZARAEDITOR_CORE_API EditorBaseApplication
-		: public Nz::Application<Nz::Graphics, Nz::Imgui, Nz::EditorCore>
+		: public Nz::Application<Nz::Graphics, Nz::Imgui, Nz::Localization, Nz::EditorCore>
 	{
 	public:
 		NazaraSignal(OnLevelChanged, Nz::Level&);
