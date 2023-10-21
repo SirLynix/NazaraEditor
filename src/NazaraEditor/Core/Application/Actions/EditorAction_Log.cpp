@@ -1,13 +1,13 @@
-#include <NazaraEditor/Core/Application/Actions/EditorAction_Log_CopyToClipboard.hpp>
+#include <NazaraEditor/Core/Application/Actions/EditorAction_Log.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
-#include <NazaraEditor/Core/Application/EditorLogger.hpp>
-
-#include <Nazara/Platform.hpp>
-
-#include <sstream>
 
 namespace Nz
 {
+	void EditorAction_Log_Clear::Execute()
+	{
+		Nz::EditorBaseApplication::Instance()->GetLogger().Clear();
+	}
+
 	void EditorAction_Log_CopyToClipboard::Execute()
 	{
 		auto& lines = Nz::EditorBaseApplication::Instance()->GetLogger().GetLog();
