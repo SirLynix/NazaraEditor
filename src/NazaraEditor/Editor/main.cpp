@@ -36,9 +36,6 @@ int WinMain(int argc, char* argv[])
 	app.SetResourceFolder(resourceDir);
 	app.SetLogger(logger);
 
-	Nz::Localization::Instance()->LoadLocalizationFile(resourceDir / "localization.csv");
-	Nz::Localization::Instance()->SetLocale("en-US");
-
 	ImGui::EnsureContextOnThisThread();
 
 	app.RegisterWindow<NzEditor::MainWindow>();
@@ -46,6 +43,9 @@ int WinMain(int argc, char* argv[])
 	app.RegisterWindow<NzEditor::LevelWindow>();
 	app.RegisterWindow<NzEditor::InspectorWindow>();
 	app.RegisterWindow<NzEditor::OutputWindow>();
+
+	Nz::Localization::Instance()->LoadLocalizationFile(resourceDir / "localization.csv");
+	Nz::Localization::Instance()->SetLocale("en-US");
 
 	Nz::TextureParams texParams;
 	texParams.renderDevice = Nz::Graphics::Instance()->GetRenderDevice();

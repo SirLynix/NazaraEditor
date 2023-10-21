@@ -1,7 +1,21 @@
 #include <NazaraEditor/Editor/Application.hpp>
 
+#include <NazaraLocalization/Localization.hpp>
+
 namespace NzEditor
 {
+	Application::Application()
+	{
+		Nz::Localization::OnLocaleInstalled.Connect([this](std::string_view locale) {
+			RegisterAction<Nz::EditorAction_SetLocale>({
+				.className = std::format("{}_{}", Nz::EditorAction_SetLocale::GetClassName(), locale),
+				.description = locale,
+				.path = { "LOC_EDITOR_MENU_TOOLS", "LOC_EDITOR_MENU_LANGUAGE", locale },
+				.category = "Tools",
+			}, locale);
+		});
+	}
+
 	bool Application::NewLevel()
 	{
 		bool bResult = EditorBaseApplication::NewLevel();

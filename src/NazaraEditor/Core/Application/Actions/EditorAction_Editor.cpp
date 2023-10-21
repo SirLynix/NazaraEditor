@@ -1,6 +1,7 @@
 #include <NazaraEditor/Core/Application/Actions/EditorAction_Editor.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
+#include <NazaraLocalization/Localization.hpp>
 
 namespace Nz
 {
@@ -20,5 +21,10 @@ namespace Nz
 			}
 			});
 
+	}
+
+	void EditorAction_SetLocale::Execute()
+	{
+		Nz::Localization::Instance()->SetLocale(m_locale);
 	}
 }

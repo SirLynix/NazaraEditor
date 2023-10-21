@@ -8,6 +8,8 @@ namespace NzEditor
 		: public Nz::EditorBaseApplication
 	{
 	public:
+		Application();
+
 		virtual bool NewLevel() override;
 	};
 }
