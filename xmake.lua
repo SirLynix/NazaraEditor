@@ -7,8 +7,10 @@ includes("xmake/**.lua")
 
 add_repositories("nazara-engine-repo https://github.com/NazaraEngine/xmake-repo")
 add_repositories("nazara-imgui-repo https://github.com/SweetId/NazaraImgui-xmake-repo")
+add_repositories("nazara-localization-repo https://github.com/SweetId/NazaraLocalization-xmake-repo")
 add_requires("nazaraengine", { alias = "nazara", debug = is_mode("debug") })
 add_requires("nazaraimgui", { alias = "nzimgui", debug = is_mode("debug") })
+add_requires("nazaralocalization", { alias = "nzloca", debug = is_mode("debug") })
 
 add_includedirs("include", "src")
 set_languages("c89", "c++20")
@@ -51,7 +53,7 @@ end
 
 local modules = {
 	Core = {
-		Packages = { "nazara", "nzimgui" },
+		Packages = { "nazara", "nzimgui", "nzloca" },
 	}
 }
 
@@ -184,5 +186,5 @@ target("NazaraEditor")
 	for name, module in pairs(modules) do
 		add_deps("NazaraEditor-" .. name)
 	end
-	add_packages("nazara", "nzimgui")
+	add_packages("nazara", "nzimgui" , "nzloca")
 	set_rundir(".")
