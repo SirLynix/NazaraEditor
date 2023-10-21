@@ -3,7 +3,7 @@
 namespace NzEditor
 {
 	AssetsWindow::AssetsWindow(Nz::EditorBaseApplication* app)
-		: Nz::EditorWindow(app, Nz::LocalizedText("LOC_EDITOR_WINDOW_ASSET_BROWSER_TITLE"), { "Assets" })
+		: Nz::EditorWindow(app, "LOC_EDITOR_WINDOW_ASSET_BROWSER_TITLE", { "Assets" })
 	{
 		BuildMenuBar();
 	}
@@ -15,6 +15,6 @@ namespace NzEditor
 
 	void AssetsWindow::BuildMenuBar()
 	{
-		AddMenuAction("Import", "Ctrl+I", [this]() { ImportAsset(); });
+		AddMenuAction({ "LOC_EDITOR_MENU_IMPORT" }, "Ctrl+I", [this]() { ImportAsset(); });
 	}
 }

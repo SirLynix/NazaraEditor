@@ -6,7 +6,7 @@
 namespace NzEditor
 {
 	OutputWindow::OutputWindow(Nz::EditorBaseApplication* app)
-		: Nz::EditorWindow(app, Nz::LocalizedText("LOC_EDITOR_WINDOW_OUTPUT_TITLE"), { "Output" })
+		: Nz::EditorWindow(app, "LOC_EDITOR_WINDOW_OUTPUT_TITLE", { "Output" })
 		, m_bScrollToBottom(true)
 		, m_bScrollToTop(false)
 	{

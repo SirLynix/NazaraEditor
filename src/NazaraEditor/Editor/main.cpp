@@ -52,25 +52,25 @@ int WinMain(int argc, char* argv[])
 	texParams.loadFormat = Nz::PixelFormat::RGBA8_SRGB;
 
 	app.RegisterAction<Nz::EditorAction_Level_New>({
-			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_LEVEL_NEW_DESC"),
-			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_LEVEL_NEW_PATH"),
+			.description = "LOC_EDITOR_ACTION_LEVEL_NEW_DESC",
+			.path = { "LOC_EDITOR_MENU_FILE", "LOC_EDITOR_MENU_LEVEL", "LOC_EDITOR_MENU_NEW" },
 			.category = "General",
 			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::N, true, true),
 			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "file_new.png", texParams)
 		});
 	app.RegisterAction<Nz::EditorAction_Log_Clear>({
-			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_CLEAR_DESC"),
-			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_CLEAR_PATH"),
+			.description = "LOC_EDITOR_ACTION_LOG_CLEAR_DESC",
+			.path = { "LOC_EDITOR_MENU_LOG_CLEAR" },
 			.category = "Output",
 		});
 	app.RegisterAction<Nz::EditorAction_Log_CopyToClipboard>({
-			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_COPY_DESC"),
-			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_LOG_COPY_PATH"),
+			.description = "LOC_EDITOR_ACTION_LOG_COPY_DESC",
+			.path = { "LOC_EDITOR_MENU_LOG_COPY" },
 			.category = "Output",
 		});
 	app.RegisterAction<Nz::EditorAction_Quit>({
-			.description = Nz::LocalizedText("LOC_EDITOR_ACTION_QUIT_DESC"),
-			.path = Nz::LocalizedText("LOC_EDITOR_ACTION_QUIT_PATH"),
+			.description = "LOC_EDITOR_ACTION_QUIT_DESC",
+			.path = { "LOC_EDITOR_MENU_FILE", "LOC_EDITOR_MENU_QUIT" },
 			.category = "General",
 			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::F4, false, false, true),
 		});

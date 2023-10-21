@@ -6,7 +6,7 @@
 namespace NzEditor
 {
 	LevelWindow::LevelWindow(Nz::EditorBaseApplication* app)
-		: Nz::EditorWindow(app, Nz::LocalizedText("LOC_EDITOR_WINDOW_LEVEL_TITLE"))
+		: Nz::EditorWindow(app, "LOC_EDITOR_WINDOW_LEVEL_TITLE")
 		, m_currentLevel(app->GetLevel())
 		, m_dirty(true)
 	{
