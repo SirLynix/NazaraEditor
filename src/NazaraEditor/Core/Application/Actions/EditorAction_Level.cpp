@@ -1,4 +1,4 @@
-#include <NazaraEditor/Core/Application/Actions/EditorAction_Level_New.hpp>
+#include <NazaraEditor/Core/Application/Actions/EditorAction_Level.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 
@@ -20,5 +20,15 @@ namespace Nz
 			}
 			});
 		
+	}
+
+	void EditorAction_Level_Open::Execute()
+	{
+		// TODO
+	}
+
+	void EditorAction_Level_Save::Execute()
+	{
+		// TODO
 	}
 }
