@@ -31,7 +31,11 @@ namespace Nz
 	{
 		bool bNeedsMenu = !m_root.entries.empty();
 		ImGuiWindowFlags flags = (bNeedsMenu ? ImGuiWindowFlags_MenuBar : 0);
-		if (ImGui::Begin(m_windowName.c_str(), nullptr, flags))
+
+		// using name###ID form to ensure ID is consistent across translations
+		std::string name = std::format("{}###{}", m_windowName.ToString(), m_windowName.GetBaseString());
+
+		if (ImGui::Begin(name.c_str(), nullptr, flags))
 		{
 			if (ImGui::BeginMenuBar())
 			{
