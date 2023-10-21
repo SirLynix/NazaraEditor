@@ -19,7 +19,7 @@ namespace Nz
 		{
 			std::string className;
 			Nz::LocalizedText description;
-			Nz::LocalizedText path;
+			std::vector<Nz::LocalizedText> path;
 			std::string category;
 			Nz::Shortcut shortcut;
 

@@ -23,8 +23,8 @@ namespace Nz
 
 		virtual void OnRenderImgui() override;
 
-		void AddMenuAction(const std::string& path, const std::string& shortcut, ActionCallback callback, const std::shared_ptr<Nz::Texture>& icon = {});
-		void AddMenuSeparator(const std::string& path);
+		void AddMenuAction(const std::vector<Nz::LocalizedText>& path, const std::string& shortcut, ActionCallback callback, const std::shared_ptr<Nz::Texture>& icon = {});
+		void AddMenuSeparator(const std::vector<Nz::LocalizedText>& path);
 
 		EditorBaseApplication* GetApplication() { return m_application; }
 		const EditorBaseApplication* GetApplication() const { return m_application; }
@@ -46,7 +46,7 @@ namespace Nz
 
 		struct MenuAction
 		{
-			std::string label;
+			Nz::LocalizedText label;
 			std::string shortcut;
 			std::shared_ptr<Nz::Texture> icon;
 			ActionCallback callback;
@@ -57,12 +57,12 @@ namespace Nz
 
 		struct MenuList
 		{
-			std::string label;
+			Nz::LocalizedText label;
 			std::vector<std::variant<MenuAction, MenuSeparator, MenuList>> entries;
 		};
 
 		MenuList m_root;
 
-		MenuList& GetOrCreateMenuHierarchy(const std::vector<std::string_view>& hierarchy);
+		MenuList& GetOrCreateMenuHierarchy(const std::vector<Nz::LocalizedText>& hierarchy);
 	};
 }

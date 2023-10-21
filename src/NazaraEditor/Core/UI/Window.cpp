@@ -18,7 +18,7 @@ namespace Nz
 				return;
 
 			auto name = prop.className;
-			AddMenuAction(prop.path.ToString(), prop.shortcut.ToString(), [name]() { Nz::EditorBaseApplication::Instance()->GetActionStack().ExecuteAction(name); }, prop.icon);
+			AddMenuAction(prop.path, prop.shortcut.ToString(), [name]() { Nz::EditorBaseApplication::Instance()->GetActionStack().ExecuteAction(name); }, prop.icon);
 		});
 	}
 
@@ -45,25 +45,21 @@ namespace Nz
 		}
 	}
 
-	void EditorWindow::AddMenuAction(const std::string& path, const std::string& shortcut, ActionCallback callback, const std::shared_ptr<Nz::Texture>& icon)
+	void EditorWindow::AddMenuAction(const std::vector<Nz::LocalizedText>& path, const std::string& shortcut, ActionCallback callback, const std::shared_ptr<Nz::Texture>& icon)
 	{
-		std::vector<std::string_view> v;
-		Nz::SplitString(path, "|", [&](std::string_view str) { v.push_back(str); return true; });
+		std::vector<Nz::LocalizedText> copy = path;
+		Nz::LocalizedText leaf = copy.back();
 
-		std::string leaf = std::string(v.back());
+		copy.pop_back(); // remove action name from hierarchy
 
-		v.pop_back(); // remove action name from hierarchy
-
-		MenuList& parent = GetOrCreateMenuHierarchy(v);
+		MenuList& parent = GetOrCreateMenuHierarchy(copy);
 
 		parent.entries.push_back(MenuAction{ leaf, shortcut, icon, callback});
 	}
 
-	void EditorWindow::AddMenuSeparator(const std::string& path)
+	void EditorWindow::AddMenuSeparator(const std::vector<Nz::LocalizedText>& path)
 	{
-		std::vector<std::string_view> v;
-		Nz::SplitString(path, "|", [&](std::string_view str) { v.push_back(str); return true; });
-		MenuList& parent = GetOrCreateMenuHierarchy(v);
+		MenuList& parent = GetOrCreateMenuHierarchy(path);
 		parent.entries.push_back(MenuSeparator{});
 	}
 
@@ -109,9 +105,9 @@ namespace Nz
 			visitor(menu);
 	}
 
-	EditorWindow::MenuList& EditorWindow::GetOrCreateMenuHierarchy(const std::vector<std::string_view>& hierarchy)
+	EditorWindow::MenuList& EditorWindow::GetOrCreateMenuHierarchy(const std::vector<Nz::LocalizedText>& hierarchy)
 	{
-		auto getOrCreate_submenu = [](MenuList* menu, std::string_view v) -> MenuList*
+		auto getOrCreate_submenu = [](MenuList* menu, const Nz::LocalizedText& v) -> MenuList*
 		{
 			for (auto& e : menu->entries)
 			{
@@ -128,7 +124,7 @@ namespace Nz
 					return ptr;
 			}
 			
-			menu->entries.push_back(MenuList{ std::string(v) });
+			menu->entries.push_back(MenuList{ v });
 			return &std::get<MenuList>(menu->entries.back());
 		};
 		
