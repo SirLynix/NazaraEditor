@@ -1,4 +1,4 @@
-#include <NazaraEditor/Core/Application/Actions/EditorAction_Quit.hpp>
+#include <NazaraEditor/Core/Application/Actions/EditorAction_Editor.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 
