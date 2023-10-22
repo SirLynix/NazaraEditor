@@ -1,0 +1,29 @@
+;en-US;fr-FR;
+en-US;English;Anglais
+fr-FR;French;Français
+LOC_EDITOR_YES;Yes;Oui
+LOC_EDITOR_NO;No;Non
+LOC_EDITOR_MENU_FILE;File;Fichier
+LOC_EDITOR_MENU_LEVEL;Level;Niveau
+LOC_EDITOR_MENU_NEW;New;Nouveau
+LOC_EDITOR_MENU_OPEN;Open;Ouvrir
+LOC_EDITOR_MENU_SAVE;Save;Enregistrer
+LOC_EDITOR_MENU_QUIT;Exit;Quitter
+LOC_EDITOR_MENU_LOG_CLEAR;Clear;Effacer
+LOC_EDITOR_MENU_LOG_COPY;Copy;Copier
+LOC_EDITOR_MENU_IMPORT;Import;Importer
+LOC_EDITOR_MENU_TOOLS;Tools;Outils
+LOC_EDITOR_MENU_LANGUAGE;Language;Langue
+LOC_EDITOR_ACTION_LEVEL_NEW_DESC;Create new level;Créé un nouveau niveau
+LOC_EDITOR_ACTION_LEVEL_OPEN_DESC;Open a level;Ouvre un niveau
+LOC_EDITOR_ACTION_LEVEL_SAVE_DESC;Save current level;Sauvegarde le niveau actuel
+LOC_EDITOR_ACTION_QUIT_DESC;Exits the editor;Quitte l'éditeur
+LOC_EDITOR_ACTION_LOG_CLEAR_DESC;Clears log output;Efface la sortie du journal
+LOC_EDITOR_ACTION_LOG_COPY_DESC;Copies log output to clipboard;Copie le journal dans le presse-papier
+LOC_EDITOR_WINDOW_ASSET_BROWSER_TITLE;Assets Browser;Catalogue d'assets
+LOC_EDITOR_WINDOW_INSPECTOR_TITLE;Inspector;Inspecteur
+LOC_EDITOR_WINDOW_LEVEL_TITLE;Level;Niveau
+LOC_EDITOR_WINDOW_MAIN_TITLE;MainWindow;Fenêtre principale
+LOC_EDITOR_WINDOW_OUTPUT_TITLE;Output;Sortie
+LOC_EDITOR_POPUP_CREATE_LEVEL_TITLE;Warning;Attention
+LOC_EDITOR_POPUP_CREATE_LEVEL_DESC;Are you sure you want to create a new level?;Etes-vous sur de vouloir créer un nouveau niveau?
