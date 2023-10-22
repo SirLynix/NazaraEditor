@@ -13,6 +13,7 @@ assets/*
 !assets/readme.md
 !assets/tests_version.txt
 !assets/shaders
+!assets/editor
 
 # Coverage
 coverage.out
