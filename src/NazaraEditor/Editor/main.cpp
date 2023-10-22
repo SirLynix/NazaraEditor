@@ -56,21 +56,21 @@ int WinMain(int argc, char* argv[])
 			.path = { "LOC_EDITOR_MENU_FILE", "LOC_EDITOR_MENU_LEVEL", "LOC_EDITOR_MENU_NEW" },
 			.category = "General",
 			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::N, true, true),
-			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "file_new.png", texParams)
+			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "icons" / "file_new.png", texParams)
 		});
 	app.RegisterAction<Nz::EditorAction_Level_Open>({
 			.description = "LOC_EDITOR_ACTION_LEVEL_OPEN_DESC",
 			.path = { "LOC_EDITOR_MENU_FILE", "LOC_EDITOR_MENU_LEVEL", "LOC_EDITOR_MENU_OPEN" },
 			.category = "General",
 			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::O, true, true),
-			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "file_open.png", texParams)
+			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "icons" / "file_open.png", texParams)
 		});
 	app.RegisterAction<Nz::EditorAction_Level_Save>({
 			.description = "LOC_EDITOR_ACTION_LEVEL_SAVE_DESC",
 			.path = { "LOC_EDITOR_MENU_FILE", "LOC_EDITOR_MENU_LEVEL", "LOC_EDITOR_MENU_SAVE" },
 			.category = "General",
 			.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::S, true, true),
-			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "file_save.png", texParams)
+			.icon = Nz::Texture::LoadFromFile(app.GetResourceFolder() / "icons" / "file_save.png", texParams)
 		});
 	app.RegisterAction<Nz::EditorAction_Log_Clear>({
 			.description = "LOC_EDITOR_ACTION_LOG_CLEAR_DESC",
