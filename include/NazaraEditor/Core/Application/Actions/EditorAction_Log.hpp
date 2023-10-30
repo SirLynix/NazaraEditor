@@ -4,6 +4,8 @@
 
 namespace Nz
 {
+	NAZARAEDITOR_CORE_API void RegisterLogActions(class EditorBaseApplication& app);
+
 	class NAZARAEDITOR_CORE_API EditorAction_Log_Clear final
 		: public EditorAction
 	{

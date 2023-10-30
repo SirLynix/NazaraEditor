@@ -1,4 +1,9 @@
 #include <NazaraEditor/Editor/Application.hpp>
+#include <NazaraEditor/Editor/UI/AssetsWindow.hpp>
+#include <NazaraEditor/Editor/UI/InspectorWindow.hpp>
+#include <NazaraEditor/Editor/UI/LevelWindow.hpp>
+#include <NazaraEditor/Editor/UI/MainWindow.hpp>
+#include <NazaraEditor/Editor/UI/OutputWindow.hpp>
 
 #include <NazaraLocalization/Localization.hpp>
 
@@ -6,6 +11,16 @@ namespace NzEditor
 {
 	Application::Application()
 	{
+		RegisterWindow<NzEditor::MainWindow>();
+		RegisterWindow<NzEditor::AssetsWindow>();
+		RegisterWindow<NzEditor::LevelWindow>();
+		RegisterWindow<NzEditor::InspectorWindow>();
+		RegisterWindow<NzEditor::OutputWindow>();
+
+		Nz::RegisterLevelActions(*this);
+		Nz::RegisterEditorActions(*this);
+		Nz::RegisterLogActions(*this);
+
 		Nz::Localization::OnLocaleInstalled.Connect([this](std::string_view locale) {
 			RegisterAction<Nz::EditorAction_SetLocale>({
 				.className = std::format("{}_{}", Nz::EditorAction_SetLocale::GetClassName(), locale),

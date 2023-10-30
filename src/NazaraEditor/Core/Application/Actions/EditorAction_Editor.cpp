@@ -5,6 +5,16 @@
 
 namespace Nz
 {
+	void RegisterEditorActions(EditorBaseApplication& app)
+	{
+		app.RegisterAction<Nz::EditorAction_Quit>({
+				.description = "LOC_EDITOR_ACTION_QUIT_DESC",
+				.path = { "LOC_EDITOR_MENU_FILE", "LOC_EDITOR_MENU_QUIT" },
+				.category = "General",
+				.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::F4, false, false, true),
+			});
+	}
+
 	void EditorAction_Quit::Execute()
 	{
 		Nz::EditorBaseApplication::Instance()->GetPopupManager().CreatePopup({

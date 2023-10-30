@@ -3,6 +3,20 @@
 
 namespace Nz
 {
+	void RegisterLogActions(EditorBaseApplication& app)
+	{
+		app.RegisterAction<Nz::EditorAction_Log_Clear>({
+				.description = "LOC_EDITOR_ACTION_LOG_CLEAR_DESC",
+				.path = { "LOC_EDITOR_MENU_LOG_CLEAR" },
+				.category = "Output",
+			});
+		app.RegisterAction<Nz::EditorAction_Log_CopyToClipboard>({
+				.description = "LOC_EDITOR_ACTION_LOG_COPY_DESC",
+				.path = { "LOC_EDITOR_MENU_LOG_COPY" },
+				.category = "Output",
+			});
+	}
+
 	void EditorAction_Log_Clear::Execute()
 	{
 		Nz::EditorBaseApplication::Instance()->GetLogger().Clear();
