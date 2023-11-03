@@ -11,6 +11,7 @@ add_repositories("nazara-localization-repo https://github.com/SweetId/NazaraLoca
 add_requires("nazaraengine", { alias = "nazara", debug = is_mode("debug") })
 add_requires("nazaraimgui", { alias = "nzimgui", debug = is_mode("debug") })
 add_requires("nazaralocalization", { alias = "nzloca", debug = is_mode("debug") })
+add_requires("nlohmann_json", { alias = "json", debug = is_mode("debug") })
 
 add_includedirs("include", "src")
 set_languages("c89", "c++20")
@@ -53,7 +54,7 @@ end
 
 local modules = {
 	Core = {
-		Packages = { "nazara", "nzimgui", "nzloca" },
+		Packages = { "nazara", "nzimgui", "nzloca", "json" },
 	}
 }
 
@@ -186,5 +187,5 @@ target("NazaraEditor")
 	for name, module in pairs(modules) do
 		add_deps("NazaraEditor-" .. name)
 	end
-	add_packages("nazara", "nzimgui" , "nzloca")
+	add_packages("nazara", "nzimgui" , "nzloca", "json")
 	set_rundir(".")

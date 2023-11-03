@@ -1,6 +1,7 @@
 #include <NazaraEditor/Core/Application/Actions/EditorAction_Level.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
+#include <NazaraEditor/Core/Asset/Asset.hpp>
 
 namespace Nz
 {
@@ -15,7 +16,7 @@ namespace Nz
 				.path = { "LOC_EDITOR_MENU_FILE", "LOC_EDITOR_MENU_LEVEL", "LOC_EDITOR_MENU_NEW" },
 				.category = "General",
 				.shortcut = Nz::Shortcut::Create(Nz::Keyboard::VKey::N, true, true),
-				.icon = Nz::Texture::LoadFromFile("assets/editor/icons/file_new.png", texParams)
+				.icon = Nz::Asset<Nz::Texture>("assets/editor/icons/file_new.asset")
 			});
 		app.RegisterAction<Nz::EditorAction_Level_Open>({
 				.description = "LOC_EDITOR_ACTION_LEVEL_OPEN_DESC",

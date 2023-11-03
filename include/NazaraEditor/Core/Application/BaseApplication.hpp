@@ -11,6 +11,7 @@
 #include <NazaraEditor/Core/Application/ActionStack.hpp>
 #include <NazaraEditor/Core/Application/EditorLogger.hpp>
 #include <NazaraEditor/Core/Application/Level.hpp>
+#include <NazaraEditor/Core/Asset/AssetManager.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
 #include <NazaraImgui/NazaraImgui.hpp>
@@ -47,6 +48,8 @@ namespace Nz
 		const EditorPopupManager& GetPopupManager() const { return m_popupManager; }
 		EditorLogger& GetLogger() { return *m_logger; }
 		const EditorLogger& GetLogger() const { return *m_logger; }
+		AssetManager& GetAssetManager() { return m_assetManager; }
+		const AssetManager& GetAssetManager() const { return m_assetManager; }
 
 		void SetResourceFolder(const std::filesystem::path& path) { m_resourceFolder = path; }
 		std::filesystem::path GetResourceFolder() const { return m_resourceFolder; }
@@ -84,6 +87,7 @@ namespace Nz
 
 		std::filesystem::path m_resourceFolder;
 		Nz::ActionStack m_actionStack;
+		Nz::AssetManager m_assetManager;
 		Nz::EditorPopupManager m_popupManager;
 		Nz::EditorLogger* m_logger;
 

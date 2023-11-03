@@ -17,6 +17,8 @@ namespace NzEditor
 		RegisterWindow<NzEditor::InspectorWindow>();
 		RegisterWindow<NzEditor::OutputWindow>();
 
+		GetAssetManager().RegisterLoader<Nz::Texture>();
+
 		Nz::RegisterLevelActions(*this);
 		Nz::RegisterEditorActions(*this);
 		Nz::RegisterLogActions(*this);
