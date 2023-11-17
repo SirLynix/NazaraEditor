@@ -16,6 +16,6 @@ namespace Nz
 		}
 
 		// Create docks everywhere in the main area
-		ImGui::DockSpaceOverViewport();
+		ImGui::DockSpaceOverViewport(nullptr, ImGuiDockNodeFlags_PassthruCentralNode);
 	}
 }
