@@ -41,10 +41,12 @@ namespace NzEditor
 			auto directional = CreateEntity("SunLight");
 			Nz::LightComponent& lightComponent = directional.emplace<Nz::LightComponent>();
 			Nz::DirectionalLight& light = lightComponent.AddLight<Nz::DirectionalLight>();
-			light.UpdateRotation(Nz::EulerAnglesf(-45.f, 0.f, 0.f));
+			light.UpdateRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(-1, 0, -1), Nz::Vector3f::Up()));
+			light.EnableShadowCasting(true);
 		}
 		{
 			auto cube = CreateEntity("Cube");
+			cube.get<Nz::NodeComponent>().SetPosition(Nz::Vector3f(0, 0, 0));
 			Nz::GraphicsComponent& graphicsComponent = cube.emplace<Nz::GraphicsComponent>();
 
 			std::shared_ptr<Nz::GraphicalMesh> boxMesh = Nz::GraphicalMesh::Build(Nz::Primitive::Box(Nz::Vector3f(1.f), Nz::Vector3ui::Zero(), Nz::Matrix4f::Scale(Nz::Vector3f(1.f)), Nz::Rectf(0.f, 0.f, 2.f, 2.f)));
@@ -55,6 +57,10 @@ namespace NzEditor
 			boxModel->SetMaterial(0, std::move(boxMat));
 			graphicsComponent.AttachRenderable(boxModel);
 		}
+
+		GetMainCamera().get<Nz::NodeComponent>().SetPosition(-5, 0, 0);
+		GetMainCamera().get<Nz::NodeComponent>().SetRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(1, 0, 0), Nz::Vector3f::Up()));
+
 		return true;
 	}
 }

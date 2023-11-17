@@ -76,6 +76,8 @@ namespace Nz
 			OnActionRegistered(properties);
 		}
 
+		inline entt::handle GetMainCamera() { return m_mainCamera; }
+
 	private:
 		static EditorBaseApplication* s_instance;
 
@@ -88,5 +90,6 @@ namespace Nz
 		Nz::EditorLogger* m_logger;
 
 		Nz::Level m_level;
+		entt::handle m_mainCamera;
 	};
 }

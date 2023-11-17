@@ -84,9 +84,9 @@ namespace Nz
 		if (bRes)
 		{
 			// configure camera
-			auto camera = CreateEntity("Camera");
-			auto& cmp = camera.get<Nz::EditorNameComponent>();
-			//cmp.SetFlags(EditorEntityFlags_Hidden);
+			m_mainCamera = CreateEntity("MainCamera");
+			auto& cmp = m_mainCamera.get<Nz::EditorNameComponent>();
+			cmp.SetFlags(EditorEntityFlags_Hidden);
 			
 			auto& cameraComponent = camera.emplace<Nz::CameraComponent>(m_windowSwapchain.get(), Nz::ProjectionType::Perspective);
 			cameraComponent.UpdateFOV(70.f);
