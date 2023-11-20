@@ -3,10 +3,19 @@
 #include <NazaraEditor/Core/Config.hpp>
 
 #include <Nazara/Core/EnttWorld.hpp>
+#include <Nazara/Math/Ray.hpp>
 
 namespace Nz
 {
 	class EditorBaseApplication;
+
+	struct RaycastHit
+	{
+		entt::handle entity;
+
+		Nz::Vector3f position;
+		float distance;
+	};
 
 	class NAZARAEDITOR_CORE_API Level final
 	{
@@ -20,6 +29,9 @@ namespace Nz
 
 		entt::handle CreateEntity();
 		bool CreateNewLevel();
+
+		// This is slow af
+		std::vector<RaycastHit> Raycast(const Nz::Rayf& ray);
 
 	protected:
 		EditorBaseApplication* m_application;
