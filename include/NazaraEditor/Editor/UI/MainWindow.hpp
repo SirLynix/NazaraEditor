@@ -7,5 +7,8 @@ namespace NzEditor
 	{
 	public:
 		MainWindow(Nz::EditorBaseApplication* app);
+
+	protected:
+		virtual void OnRenderImgui() override;
 	};
 }
