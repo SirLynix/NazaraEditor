@@ -77,10 +77,13 @@ namespace Nz
 		}
 
 		inline entt::handle GetMainCamera() { return m_mainCamera; }
+		inline Nz::Window* GetWindow() { return m_window; }
+		inline const Nz::Window* GetWindow() const { return m_window; }
 
 	private:
 		static EditorBaseApplication* s_instance;
 
+		Nz::Window* m_window;
 		std::unique_ptr<Nz::WindowSwapchain> m_windowSwapchain;
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
 

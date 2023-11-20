@@ -18,6 +18,7 @@ namespace Nz
 		std::string windowTitle = "Nazara Editor";
 		Nz::Window& window = windowing.CreateWindow(Nz::VideoMode(1280, 720, 32), windowTitle);
 		m_windowSwapchain = std::make_unique<Nz::WindowSwapchain>(device, window);
+		m_window = &window;
 
 		// connect basic handler
 		window.GetEventHandler().OnQuit.Connect([&window](const auto* handler) {
