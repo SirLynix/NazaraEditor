@@ -1,5 +1,7 @@
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
+#include <NazaraEditor/Core/Components/CameraComponent.hpp>
 #include <NazaraEditor/Core/Components/NameComponent.hpp>
+#include <NazaraEditor/Core/Systems/CameraSystem.hpp>
 
 namespace Nz
 {
@@ -84,6 +86,8 @@ namespace Nz
 		bool bRes = m_level.CreateNewLevel();
 		if (bRes)
 		{
+			m_level.GetEnttWorld()->AddSystem<EditorCameraSystem>();
+
 			// configure camera
 			m_mainCamera = CreateEntity("MainCamera");
 			auto& cmp = m_mainCamera.get<Nz::EditorNameComponent>();
@@ -92,6 +96,8 @@ namespace Nz
 			auto& cameraComponent = camera.emplace<Nz::CameraComponent>(m_windowSwapchain.get(), Nz::ProjectionType::Perspective);
 			cameraComponent.UpdateFOV(70.f);
 			cameraComponent.UpdateClearColor(Nz::Color(0.46f, 0.48f, 0.84f, 1.f));
+
+			auto& editorcam = m_mainCamera.emplace<Nz::EditorCameraComponent>();
 
 			OnLevelChanged(m_level);
 		}
