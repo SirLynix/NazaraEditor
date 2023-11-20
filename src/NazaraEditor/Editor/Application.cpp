@@ -4,6 +4,7 @@
 #include <NazaraEditor/Editor/UI/LevelWindow.hpp>
 #include <NazaraEditor/Editor/UI/MainWindow.hpp>
 #include <NazaraEditor/Editor/UI/OutputWindow.hpp>
+#include <NazaraEditor/Core/Components/CameraComponent.hpp>
 
 #include <NazaraLocalization/Localization.hpp>
 
@@ -58,8 +59,8 @@ namespace NzEditor
 			graphicsComponent.AttachRenderable(boxModel);
 		}
 
-		GetMainCamera().get<Nz::NodeComponent>().SetPosition(-5, 0, 0);
-		GetMainCamera().get<Nz::NodeComponent>().SetRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(1, 0, 0), Nz::Vector3f::Up()));
+		GetMainCamera().get<Nz::EditorCameraComponent>().SetPosition(Nz::Vector3f(- 5, 0, 0));
+		GetMainCamera().get<Nz::EditorCameraComponent>().SetRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(1, 0, 0), Nz::Vector3f::Up()));
 
 		return true;
 	}

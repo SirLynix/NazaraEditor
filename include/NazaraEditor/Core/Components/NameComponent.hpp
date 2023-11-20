@@ -1,6 +1,6 @@
 #pragma once
 
-#include <NazaraEditor/Core/Config.hpp>
+#include <NazaraEditor/Core/Core.hpp>
 
 #include <string>
 
