@@ -14,8 +14,7 @@ namespace NzEditor
 	{
 		Nz::EditorMainWindow::OnRenderImgui();
 
-		auto flags = ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoDecoration;
-		if (ImGui::Begin("MainWindow", nullptr, flags))
+		if (ImGui::Begin("MainWindow"))
 		{
 			auto cam = GetApplication()->GetMainCamera();
 			auto& camcomponent = cam.get<Nz::EditorCameraComponent>();
@@ -25,6 +24,8 @@ namespace NzEditor
 			auto rotation = transform.GetRotation().ToEulerAngles();
 			ImGui::Text("Camera position: %.2f %.2f %.2f", transform.GetPosition().x, transform.GetPosition().y, transform.GetPosition().z);
 			ImGui::Text("Camera rotation: %.2f %.2f %.2f", rotation.roll.value, rotation.pitch.value, rotation.yaw.value);
+			
+			ImGui::Image(GetApplication()->GetEngineTexture());
 			ImGui::End();
 		}
 	}

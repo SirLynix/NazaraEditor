@@ -2,17 +2,21 @@
 
 #include <NazaraEditor/Core/Core.hpp>
 
+#include <Nazara/Core/Clock.hpp>
 #include <Nazara/Platform/WindowEventHandler.hpp>
+#include <Nazara/Math/Ray.hpp>
 
 namespace Nz
 {
+	class Camera;
+	class DebugDrawer;
 	class NodeComponent;
 	class WindowEventHandler;
 
 	class NAZARAEDITOR_CORE_API EditorCameraComponent
 	{
 	public:
-		EditorCameraComponent();
+		EditorCameraComponent(Nz::Camera& camera, Nz::DebugDrawer& debug);
 		EditorCameraComponent(const EditorCameraComponent&) = delete;
 
 		EditorCameraComponent(EditorCameraComponent&&);
@@ -27,13 +31,21 @@ namespace Nz
 		inline const Nz::EulerAnglesf& GetOrientation() const { return m_targetAngles; }
 
 	private:
+		void RaycastSelection(int x, int y);
+
+		NazaraSlot(Nz::WindowEventHandler, OnMouseButtonReleased, m_onMouseClicked);
 		NazaraSlot(Nz::WindowEventHandler, OnMouseMoved, m_onMouseMoved);
 
+		Nz::Camera& m_camera;
 		Nz::EulerAnglesf m_targetAngles;
 		Nz::Vector3f m_targetPosition;
 		Nz::Vector3f m_currentVelocity;
 
 		float m_moveSpeed;
 		float m_smoothSpeed;
+	
+		Nz::Rayf m_lastRay;
+		Nz::DebugDrawer& m_debugDrawer;
+		Nz::MillisecondClock m_debugClock;
 	};
 }

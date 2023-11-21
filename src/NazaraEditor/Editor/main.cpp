@@ -23,17 +23,12 @@ int WinMain(int argc, char* argv[])
 
 	Nz::EditorLogger logger;
 
-	std::filesystem::path resourceDir = "assets/editor";
-	if (!std::filesystem::is_directory(resourceDir) && std::filesystem::is_directory("../.." / resourceDir))
-			resourceDir = "../.." / resourceDir;
-
 	NzEditor::Application app;
-	app.SetResourceFolder(resourceDir);
 	app.SetLogger(logger);
 
 	ImGui::EnsureContextOnThisThread();
 
-	Nz::Localization::Instance()->LoadLocalizationFile(resourceDir / "localization.csv");
+	Nz::Localization::Instance()->LoadLocalizationFile(app.GetResourceFolder() / "localization.csv");
 	Nz::Localization::Instance()->SetLocale("en-US");
 
 	entt::meta<Nz::NodeComponent>()
@@ -52,5 +47,6 @@ int WinMain(int argc, char* argv[])
 		.type(entt::type_hash<Nz::EditorNameComponent>::value())
 		.func<&Nz::ReflectComponent<Nz::EditorPropertyInspector<Nz::EditorRenderer>, Nz::EditorNameComponent>>(entt::hashed_string("Reflect"));
 
+	app.NewLevel();
 	return app.Run();
 }

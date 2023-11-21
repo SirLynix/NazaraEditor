@@ -80,11 +80,16 @@ namespace Nz
 		inline Nz::Window* GetWindow() { return m_window; }
 		inline const Nz::Window* GetWindow() const { return m_window; }
 
+		inline Nz::Texture* GetEngineTexture() { return m_engineTexture.get(); }
+		inline const Nz::Texture* GetEngineTexture() const { return m_engineTexture.get(); }
+
 	private:
 		static EditorBaseApplication* s_instance;
 
 		Nz::Window* m_window;
 		std::unique_ptr<Nz::WindowSwapchain> m_windowSwapchain;
+		std::unique_ptr<Nz::Camera> m_editorCamera;
+		std::shared_ptr<Nz::Texture> m_engineTexture;
 		std::vector<std::unique_ptr<Nz::EditorWindow>> m_windows;
 
 		std::filesystem::path m_resourceFolder;
