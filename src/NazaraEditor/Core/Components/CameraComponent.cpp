@@ -1,6 +1,8 @@
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
-
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
+
+#include <Nazara/Graphics/Components/CameraComponent.hpp>
+#include <Nazara/Math/Ray.hpp>
 
 namespace
 {
@@ -43,14 +45,24 @@ namespace
 
 namespace Nz
 {
-	EditorCameraComponent::EditorCameraComponent()
-		: m_targetAngles(Nz::EulerAnglesf::Zero())
+	EditorCameraComponent::EditorCameraComponent(Nz::Camera& camera, Nz::DebugDrawer& debugDrawer)
+		: m_camera(camera)
+		, m_debugDrawer(debugDrawer)
+		, m_targetAngles(Nz::EulerAnglesf::Zero())
 		, m_targetPosition(Nz::Vector3f::Zero())
 		, m_currentVelocity(Nz::Vector3f::Zero())
 		, m_moveSpeed(3.f)
 		, m_smoothSpeed(0.3f)
 	{
 		auto& handler = EditorBaseApplication::Instance()->GetWindow()->GetEventHandler();
+
+		m_onMouseClicked.Connect(handler.OnMouseButtonReleased, [&](const Nz::WindowEventHandler*, const Nz::WindowEvent::MouseButtonEvent& event)
+		{
+			if (event.button == Nz::Mouse::Button::Left)
+			{
+				RaycastSelection(event.x, event.y);
+			}
+		});
 
 		m_onMouseMoved.Connect(handler.OnMouseMoved, [&](const Nz::WindowEventHandler*, const Nz::WindowEvent::MouseMoveEvent& event)
 			{
@@ -103,5 +115,31 @@ namespace Nz
 
 		node.SetPosition(currentPosition);
 		node.SetRotation(currentRotation);
+
+		if (!m_debugClock.IsPaused())
+		{
+			if (m_debugClock.GetElapsedTime().AsSeconds() > 100)
+				m_debugClock.Pause();
+
+			m_debugDrawer.DrawLine(m_lastRay.origin, m_lastRay.direction * 500 + m_lastRay.origin, Nz::Color::Green());
+		}
+	}
+
+	void EditorCameraComponent::RaycastSelection(int x, int y)
+	{
+		auto near = m_camera.Unproject(Nz::Vector3f(x, y, 0));
+		auto far = m_camera.Unproject(Nz::Vector3f(x, y, 1));
+
+		Nz::Rayf ray(near, (far - near).Normalize());
+
+		auto entities = EditorBaseApplication::Instance()->GetLevel().Raycast(ray);
+
+		if (!entities.empty())
+		{
+			EditorBaseApplication::Instance()->OnEntitySelected(entities.front().entity);
+		}
+
+		m_lastRay = ray;
+		m_debugClock.Restart();
 	}
 }

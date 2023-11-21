@@ -28,15 +28,19 @@ namespace Nz
 		auto& registry = m_world->GetRegistry();
 		for (auto&& entity : registry.storage<entt::entity>().each())
 		{
-			Nz::GraphicsComponent* component = registry.try_get<Nz::GraphicsComponent>(std::get<entt::entity>(entity));
-			if (component != nullptr)
+			Nz::GraphicsComponent* graphics = registry.try_get<Nz::GraphicsComponent>(std::get<entt::entity>(entity));
+			Nz::NodeComponent* transform = registry.try_get<Nz::NodeComponent>(std::get<entt::entity>(entity));
+			if (transform != nullptr && graphics != nullptr)
 			{
+				BoundingVolumef boundingVolume(graphics->GetAABB());
+				boundingVolume.Update(transform->GetTransformMatrix());
+
 				float distance = 0;
-				if (ray.Intersect(component->GetAABB(), &distance))
+				if (ray.Intersect(boundingVolume, &distance))
 				{
 					entities.push_back({
 						.entity = entt::handle(registry, std::get<entt::entity>(entity)),
-						.position = ray.origin + ray.direction * distance,
+						.position = ray.GetPoint(distance),
 						.distance = distance
 					});
 				}
