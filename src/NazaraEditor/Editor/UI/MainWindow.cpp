@@ -16,16 +16,20 @@ namespace NzEditor
 
 		if (ImGui::Begin("MainWindow"))
 		{
+			auto pos = ImGui::GetCursorPos();
+			ImGui::Image(GetApplication()->GetEngineTexture());
+			ImGui::SetCursorPos(pos); // everything else will be drawn on top of the texture
+
 			auto cam = GetApplication()->GetMainCamera();
 			auto& camcomponent = cam.get<Nz::EditorCameraComponent>();
 			auto& transform = cam.get<Nz::NodeComponent>();
 
 			auto desiredRotation = camcomponent.GetOrientation();
 			auto rotation = transform.GetRotation().ToEulerAngles();
+			
 			ImGui::Text("Camera position: %.2f %.2f %.2f", transform.GetPosition().x, transform.GetPosition().y, transform.GetPosition().z);
 			ImGui::Text("Camera rotation: %.2f %.2f %.2f", rotation.roll.value, rotation.pitch.value, rotation.yaw.value);
 			
-			ImGui::Image(GetApplication()->GetEngineTexture());
 			ImGui::End();
 		}
 	}
