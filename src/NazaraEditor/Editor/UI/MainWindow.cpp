@@ -21,7 +21,8 @@ namespace NzEditor
 		if (ImGui::Begin("MainWindow"))
 		{
 			auto pos = ImGui::GetCursorPos();
-			ImGui::Image(GetApplication()->GetEngineTexture());
+			auto size = ImGui::GetContentRegionAvail();
+			ImGui::Image(GetApplication()->GetEngineTexture(), Nz::Vector2f{ size.x, size.y });
 			ImGui::SetCursorPos(pos); // everything else will be drawn on top of the texture
 
 			auto cam = GetApplication()->GetMainCamera();
