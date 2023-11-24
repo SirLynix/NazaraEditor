@@ -7,6 +7,7 @@
 #include <NazaraEditor/Core/Application/Level.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
+#include <NazaraImgui/NazaraImgui.hpp>
 #include <NazaraLocalization/Localization.hpp>
 
 #include <NazaraEditor/Core/Core.hpp>
