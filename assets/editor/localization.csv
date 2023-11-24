@@ -14,6 +14,8 @@ LOC_EDITOR_MENU_LOG_COPY;Copy;Copier
 LOC_EDITOR_MENU_IMPORT;Import;Importer
 LOC_EDITOR_MENU_TOOLS;Tools;Outils
 LOC_EDITOR_MENU_LANGUAGE;Language;Langue
+LOC_EDITOR_MENU_VIEW;View;Fenetre
+LOC_EDITOR_MENU_RESOLUTION;Resolution;Résolution
 LOC_EDITOR_ACTION_LEVEL_NEW_DESC;Create new level;Créé un nouveau niveau
 LOC_EDITOR_ACTION_LEVEL_OPEN_DESC;Open a level;Ouvre un niveau
 LOC_EDITOR_ACTION_LEVEL_SAVE_DESC;Save current level;Sauvegarde le niveau actuel

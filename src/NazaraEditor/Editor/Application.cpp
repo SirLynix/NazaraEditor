@@ -14,6 +14,8 @@
 
 #include <NazaraLocalization/Localization.hpp>
 
+#include <NazaraEditor/Core/Application/Actions/EditorAction_Camera.hpp>
+
 namespace NzEditor
 {
 	Application::Application()
@@ -26,6 +28,7 @@ namespace NzEditor
 
 		Nz::RegisterLevelActions(*this);
 		Nz::RegisterEditorActions(*this);
+		Nz::RegisterCameraActions(*this);
 		Nz::RegisterLogActions(*this);
 
 		Nz::Localization::OnLocaleInstalled.Connect([this](std::string_view locale) {

@@ -37,22 +37,7 @@ namespace Nz
 		m_windowSwapchain = std::make_unique<Nz::WindowSwapchain>(device, window);
 		m_window = &window;
 
-		// Allocate texture for engine rendering
-		{
-			Nz::TextureInfo screenTextureInfo = {
-				.pixelFormat = Nz::PixelFormat::RGBA8,
-				.type = Nz::ImageType::E2D,
-				.usageFlags = Nz::TextureUsage::ColorAttachment | Nz::TextureUsage::ShaderSampling | Nz::TextureUsage::TransferDestination,
-				.levelCount = 1,
-				.height = 720,
-				.width = 1280
-			};
-
-			std::size_t size = Nz::PixelFormatInfo::ComputeSize(screenTextureInfo.pixelFormat, screenTextureInfo.width, screenTextureInfo.height, screenTextureInfo.depth);
-
-			std::vector<std::uint8_t> defaultScreen(size, 0xFF);
-			m_engineTexture = device->InstantiateTexture(screenTextureInfo, defaultScreen.data(), false);
-		}
+		CreateEngineTexture({ 1280, 720 });
 
 		// connect basic handler
 		window.GetEventHandler().OnQuit.Connect([&window](const auto* handler) {
@@ -134,16 +119,56 @@ namespace Nz
 			auto& cmp = m_mainCamera.get<Nz::EditorNameComponent>();
 			cmp.SetFlags(EditorEntityFlags_Hidden);
 
-			auto passList = Nz::PipelinePassList::LoadFromFile(m_resourceFolder / "engine.passlist");
-			
-			auto& cameraComponent = m_mainCamera.emplace<Nz::CameraComponent>(std::make_shared<Nz::RenderTexture>(m_engineTexture), passList, Nz::ProjectionType::Perspective);
-			cameraComponent.UpdateFOV(70.f);
-			cameraComponent.UpdateClearColor(Nz::Color(0.46f, 0.48f, 0.84f, 1.f));
-
-			m_mainCamera.emplace<Nz::EditorCameraComponent>(cameraComponent, system.GetFramePipeline().GetDebugDrawer());
+			CreateEngineCamera();
 
 			OnLevelChanged(m_level);
 		}
 		return bRes;
+	}
+
+	// Allocate texture for engine rendering
+	void EditorBaseApplication::CreateEngineTexture(const Nz::Vector2ui& resolution)
+	{
+		std::shared_ptr<Nz::RenderDevice> device = Nz::Graphics::Instance()->GetRenderDevice();
+
+		Nz::TextureInfo screenTextureInfo = {
+			.pixelFormat = Nz::PixelFormat::RGBA8,
+			.type = Nz::ImageType::E2D,
+			.usageFlags = Nz::TextureUsage::ColorAttachment | Nz::TextureUsage::ShaderSampling | Nz::TextureUsage::TransferDestination,
+			.levelCount = 1,
+			.height = resolution.y,
+			.width = resolution.x
+		};
+
+		std::size_t size = Nz::PixelFormatInfo::ComputeSize(screenTextureInfo.pixelFormat, screenTextureInfo.width, screenTextureInfo.height, screenTextureInfo.depth);
+
+		std::vector<std::uint8_t> defaultScreen(size, 0xFF);
+		m_engineTexture = device->InstantiateTexture(screenTextureInfo, defaultScreen.data(), false);
+
+		if (m_mainCamera)
+		{
+			m_mainCamera.remove<Nz::EditorCameraComponent>();
+			m_mainCamera.remove<Nz::CameraComponent>();
+			CreateEngineCamera();
+		}
+
+	}
+
+	void EditorBaseApplication::CreateEngineCamera()
+	{
+		RenderSystem& system = m_level.GetEnttWorld()->GetSystem<RenderSystem>();
+
+		auto passList = Nz::PipelinePassList::LoadFromFile(m_resourceFolder / "engine.passlist");
+
+		auto& cameraComponent = m_mainCamera.emplace<Nz::CameraComponent>(std::make_shared<Nz::RenderTexture>(m_engineTexture), passList, Nz::ProjectionType::Perspective);
+		cameraComponent.UpdateFOV(70.f);
+		cameraComponent.UpdateClearColor(Nz::Color(0.46f, 0.48f, 0.84f, 1.f));
+
+		auto& editorCameraComponent = m_mainCamera.emplace<Nz::EditorCameraComponent>(cameraComponent, system.GetFramePipeline().GetDebugDrawer());
+		auto& transform = m_mainCamera.get<Nz::NodeComponent>();
+
+		editorCameraComponent.SetPosition(transform.GetPosition());
+		editorCameraComponent.SetRotation(transform.GetRotation());
+
 	}
 }

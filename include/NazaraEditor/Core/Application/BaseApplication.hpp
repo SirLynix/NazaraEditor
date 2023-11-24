@@ -83,7 +83,11 @@ namespace Nz
 		inline Nz::Texture* GetEngineTexture() { return m_engineTexture.get(); }
 		inline const Nz::Texture* GetEngineTexture() const { return m_engineTexture.get(); }
 
+		void CreateEngineTexture(const Nz::Vector2ui& resolution);
+
 	private:
+		void CreateEngineCamera();
+
 		static EditorBaseApplication* s_instance;
 
 		Nz::Window* m_window;
