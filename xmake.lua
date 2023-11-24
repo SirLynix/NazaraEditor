@@ -71,6 +71,9 @@ function ModuleTargetConfig(name, module)
 		add_headerfiles("src/NazaraEditor/" .. name .. "/Resources/**.nzsl", { prefixdir = "private", install = false })
 	end
 
+	-- Add global header
+	add_headerfiles("include/(NazaraEditor/" .. name .. ".hpp)")
+
 	remove_headerfiles("src/NazaraEditor/" .. name .. "/Resources/**.h")
 
 	add_files("src/NazaraEditor/" .. name .. "/**.cpp")
