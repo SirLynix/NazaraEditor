@@ -1,23 +1,22 @@
 #pragma once
 
-#include <Nazara/Core.hpp>
-#include <Nazara/Graphics.hpp>
-#include <Nazara/Platform.hpp>
-#include <Nazara/Renderer.hpp>
-#include <Nazara/Utility.hpp>
-
-#include <NazaraEditor/Core/Core.hpp>
+#include <NazaraEditor/Core/Config.hpp>
 #include <NazaraEditor/Core/Application/Action.hpp>
 #include <NazaraEditor/Core/Application/ActionStack.hpp>
 #include <NazaraEditor/Core/Application/EditorLogger.hpp>
 #include <NazaraEditor/Core/Application/Level.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
-#include <NazaraImgui/NazaraImgui.hpp>
 #include <NazaraLocalization/Localization.hpp>
+
+#include <NazaraEditor/Core/Core.hpp>
+#include <Nazara/Core/Application.hpp>
 
 namespace Nz
 {
+	class Camera;
+	class WindowSwapchain;
+
 	class NAZARAEDITOR_CORE_API EditorBaseApplication
 		: public Nz::Application<Nz::Graphics, Nz::Imgui, Nz::Localization, Nz::EditorCore>
 	{

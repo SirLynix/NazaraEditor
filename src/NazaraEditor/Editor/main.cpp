@@ -7,6 +7,7 @@
 
 #include <NazaraImgui/NazaraImgui.hpp>
 #include <NazaraEditor/Core.hpp>
+#include <NazaraEditor/Core/Reflection.hpp>
 
 #include <NazaraEditor/Editor/Application.hpp>
 

@@ -3,6 +3,9 @@
 
 #include <Nazara/Graphics/Components/CameraComponent.hpp>
 #include <Nazara/Math/Ray.hpp>
+#include <Nazara/Platform/Window.hpp>
+#include <Nazara/Renderer/DebugDrawer.hpp>
+#include <Nazara/Utility/Components/NodeComponent.hpp>
 
 namespace
 {

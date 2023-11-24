@@ -1,8 +1,10 @@
 #pragma once
 
-#include <NazaraEditor/Core/Core.hpp>
-#include <Nazara/Platform.hpp>
+#include <NazaraEditor/Core/Config.hpp>
 
+#include <Nazara/Platform/Keyboard.hpp>
+
+#include <sstream>
 #include <vector>
 
 namespace Nz

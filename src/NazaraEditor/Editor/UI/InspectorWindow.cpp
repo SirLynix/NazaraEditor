@@ -2,6 +2,9 @@
 
 #include <NazaraEditor/Editor/Application.hpp>
 
+#include <NazaraEditor/Core/Reflection.hpp>
+#include <NazaraEditor/Core/Reflection/Editor.hpp>
+
 namespace NzEditor
 {
 	InspectorWindow::InspectorWindow(Nz::EditorBaseApplication* app)

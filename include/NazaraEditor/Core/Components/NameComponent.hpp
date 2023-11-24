@@ -1,6 +1,6 @@
 #pragma once
 
-#include <NazaraEditor/Core/Core.hpp>
+#include <NazaraEditor/Core/Config.hpp>
 
 #include <string>
 
@@ -34,4 +34,5 @@ namespace Nz
 		std::string m_name;
 		uint64_t m_flags;
 	};
+
 }

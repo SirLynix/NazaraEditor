@@ -1,5 +1,7 @@
 #include <NazaraEditor/Core/UI/MainWindow.hpp>
 
+#include <imgui.h>
+
 namespace Nz
 {
 	EditorMainWindow::EditorMainWindow(EditorBaseApplication* app, const Nz::LocalizedText& name, const std::vector<std::string>& categories)

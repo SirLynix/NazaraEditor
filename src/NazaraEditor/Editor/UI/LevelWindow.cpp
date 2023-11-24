@@ -1,7 +1,7 @@
 #include <NazaraEditor/Editor/UI/LevelWindow.hpp>
 
+#include <NazaraEditor/Core/Reflection.hpp>
 #include <NazaraEditor/Editor/Application.hpp>
-#include <NazaraEditor/Core.hpp>
 
 namespace NzEditor
 {

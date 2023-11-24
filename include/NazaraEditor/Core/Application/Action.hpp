@@ -1,10 +1,8 @@
 #pragma once
 
-#include <NazaraEditor/Core/Core.hpp>
-
+#include <NazaraEditor/Core/Config.hpp>
 #include <NazaraEditor/Core/Application/Shortcut.hpp>
 
-#include <Nazara/Renderer.hpp>
 #include <NazaraLocalization/LocalizedText.hpp>
 
 #include <memory>
@@ -12,6 +10,8 @@
 
 namespace Nz
 {
+	class Texture;
+
 	class NAZARAEDITOR_CORE_API EditorAction
 	{
 	public:

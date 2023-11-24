@@ -1,10 +1,13 @@
 #include <NazaraEditor/Core.hpp>
+#include <NazaraEditor/Core/UI/Window.hpp>
 
-#include <Nazara/Core.hpp>
-#include <Nazara/Utility.hpp>
+#include <Nazara/Utility/Node.hpp>
+#include <entt/entt.hpp>
 
 namespace NzEditor
 {
+	class Level;
+
 	class LevelWindow
 		: public Nz::EditorWindow
 	{

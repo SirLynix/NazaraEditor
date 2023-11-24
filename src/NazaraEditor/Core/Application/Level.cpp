@@ -1,6 +1,9 @@
 #include <NazaraEditor/Core/Application/Level.hpp>
-
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
+
+#include <Nazara/Core/AppEntitySystemComponent.hpp>
+#include <Nazara/Graphics/Components/GraphicsComponent.hpp>
+#include <Nazara/Utility/Components/NodeComponent.hpp>
 
 namespace Nz
 {

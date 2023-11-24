@@ -1,6 +1,6 @@
 #pragma once
 
-#include <NazaraEditor/Core/Core.hpp>
+#include <NazaraEditor/Core/Config.hpp>
 
 #include <Nazara/Core/Clock.hpp>
 #include <Nazara/Platform/WindowEventHandler.hpp>

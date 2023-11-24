@@ -3,6 +3,10 @@
 
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
 
+#include <Nazara/Utility/Components/NodeComponent.hpp>
+
+#include <NazaraImgui/ImguiWidgets.hpp>
+
 namespace NzEditor
 {
 	MainWindow::MainWindow(Nz::EditorBaseApplication* app)

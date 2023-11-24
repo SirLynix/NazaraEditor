@@ -1,6 +1,8 @@
 #pragma once
 
-#include <NazaraEditor/Core/Core.hpp>
+#include <NazaraEditor/Core/Config.hpp>
+
+#include <Nazara/Core/Time.hpp>
 
 #include <entt/entt.hpp>
 #include <unordered_set>

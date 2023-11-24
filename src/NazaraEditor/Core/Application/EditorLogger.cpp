@@ -1,5 +1,7 @@
 #include <NazaraEditor/Core/Application/EditorLogger.hpp>
 
+#include <Nazara/Core/Log.hpp>
+
 namespace Nz
 {
 	EditorLogger::EditorLogger()

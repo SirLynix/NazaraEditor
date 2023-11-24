@@ -1,7 +1,9 @@
 #pragma once
 
-#include <NazaraEditor/Core/Core.hpp>
-#include <Nazara/Core.hpp>
+#include <NazaraEditor/Core/Config.hpp>
+
+#include <string>
+#include <vector>
 
 namespace Nz
 {

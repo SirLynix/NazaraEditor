@@ -1,5 +1,7 @@
 #pragma once
 
+#include <NazaraUtils/Prerequisites.hpp>
+
 #ifndef NAZARAEDITOR_CORE_CONFIG_HPP
 #define NAZARAEDITOR_CORE_CONFIG_HPP
 

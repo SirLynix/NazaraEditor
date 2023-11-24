@@ -1,5 +1,7 @@
 #pragma once
 
+#include <NazaraEditor/Core/Components/NameComponent.hpp>
+
 #include <functional>
 #include <string>
 

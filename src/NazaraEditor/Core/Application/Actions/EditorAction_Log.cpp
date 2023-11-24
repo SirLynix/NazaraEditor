@@ -1,6 +1,8 @@
 #include <NazaraEditor/Core/Application/Actions/EditorAction_Log.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
+#include <Nazara/Platform/Clipboard.hpp>
+
 namespace Nz
 {
 	void RegisterLogActions(EditorBaseApplication& app)

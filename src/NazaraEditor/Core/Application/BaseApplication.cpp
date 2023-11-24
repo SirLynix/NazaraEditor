@@ -3,6 +3,15 @@
 #include <NazaraEditor/Core/Components/NameComponent.hpp>
 #include <NazaraEditor/Core/Systems/CameraSystem.hpp>
 
+#include <Nazara/Core/AppEntitySystemComponent.hpp>
+#include <Nazara/Graphics/Components/CameraComponent.hpp>
+#include <Nazara/Graphics/FramePipeline.hpp>
+#include <Nazara/Graphics/RenderTexture.hpp>
+#include <Nazara/Graphics/RenderWindow.hpp>
+#include <Nazara/Graphics/Systems/RenderSystem.hpp>
+#include <Nazara/Platform/AppWindowingComponent.hpp>
+#include <Nazara/Utility/Components/NodeComponent.hpp>
+
 namespace Nz
 {
 	EditorBaseApplication* EditorBaseApplication::s_instance = nullptr;

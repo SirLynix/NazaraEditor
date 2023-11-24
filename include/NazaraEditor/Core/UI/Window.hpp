@@ -1,15 +1,17 @@
 #pragma once
 
-#include <NazaraUtils/Prerequisites.hpp>
 #include <NazaraEditor/Core/Config.hpp>
-#include <NazaraImgui/NazaraImgui.hpp>
+#include <NazaraImgui/ImguiHandler.hpp>
 #include <NazaraLocalization/LocalizedText.hpp>
+
+#include <functional>
 
 namespace Nz
 {
 	using ActionCallback = std::function<void(void)>;
 
 	class EditorBaseApplication;
+	class Texture;
 
 	class NAZARAEDITOR_CORE_API EditorWindow
 		: private Nz::ImguiHandler
@@ -35,8 +37,6 @@ namespace Nz
 		void DrawMenus();
 
 		virtual void OnEditorGUI() {};
-
-		virtual ImGuiWindowFlags GetCustomWindowFlags() const { return ImGuiWindowFlags_None; }
 
 	private:
 

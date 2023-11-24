@@ -1,8 +1,11 @@
 #pragma once
 
-#include <NazaraEditor/Core/Core.hpp>
+#include <NazaraEditor/Core/Config.hpp>
 #include <NazaraLocalization/LocalizedText.hpp>
 
+#include <NazaraImgui/ImguiHandler.hpp>
+
+#include <functional>
 #include <memory>
 #include <vector>
 

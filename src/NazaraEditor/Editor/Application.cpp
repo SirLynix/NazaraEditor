@@ -6,6 +6,12 @@
 #include <NazaraEditor/Editor/UI/OutputWindow.hpp>
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
 
+#include <Nazara/Graphics/Components/GraphicsComponent.hpp>
+#include <Nazara/Graphics/Components/LightComponent.hpp>
+#include <Nazara/Graphics/DirectionalLight.hpp>
+#include <Nazara/Graphics/GraphicalMesh.hpp>
+#include <Nazara/Graphics/Model.hpp>
+
 #include <NazaraLocalization/Localization.hpp>
 
 namespace NzEditor

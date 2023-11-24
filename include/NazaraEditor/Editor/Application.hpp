@@ -1,6 +1,6 @@
 #pragma once
 
-#include <NazaraEditor/Core.hpp>
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
 namespace NzEditor
 {
