@@ -82,6 +82,9 @@ namespace Nz
 
 		inline Nz::Texture* GetEngineTexture() { return m_engineTexture.get(); }
 		inline const Nz::Texture* GetEngineTexture() const { return m_engineTexture.get(); }
+		
+		inline StretchMode GetEngineTextureStretchMode() const { return m_engineTextureStretchMode; }
+		inline void SetEngineTextureStretchMode(StretchMode mode) { m_engineTextureStretchMode = mode; }
 
 		void CreateEngineTexture(const Nz::Vector2ui& resolution);
 
@@ -103,5 +106,7 @@ namespace Nz
 
 		Nz::Level m_level;
 		entt::handle m_mainCamera;
+
+		StretchMode m_engineTextureStretchMode;
 	};
 }

@@ -16,6 +16,7 @@ LOC_EDITOR_MENU_TOOLS;Tools;Outils
 LOC_EDITOR_MENU_LANGUAGE;Language;Langue
 LOC_EDITOR_MENU_VIEW;View;Fenetre
 LOC_EDITOR_MENU_RESOLUTION;Resolution;Résolution
+LOC_EDITOR_MENU_ASPECTRATIO;Aspect Ratio;Aspect Ratio
 LOC_EDITOR_ACTION_LEVEL_NEW_DESC;Create new level;Créé un nouveau niveau
 LOC_EDITOR_ACTION_LEVEL_OPEN_DESC;Open a level;Ouvre un niveau
 LOC_EDITOR_ACTION_LEVEL_SAVE_DESC;Save current level;Sauvegarde le niveau actuel
@@ -29,3 +30,7 @@ LOC_EDITOR_WINDOW_MAIN_TITLE;MainWindow;Fenêtre principale
 LOC_EDITOR_WINDOW_OUTPUT_TITLE;Output;Sortie
 LOC_EDITOR_POPUP_CREATE_LEVEL_TITLE;Warning;Attention
 LOC_EDITOR_POPUP_CREATE_LEVEL_DESC;Are you sure you want to create a new level?;Etes-vous sur de vouloir créer un nouveau niveau?
+LOC_EDITOR_CAMERA_KEEPASPECTRATIO_TITLE;Aspect Ratio;Aspect Ratio
+LOC_EDITOR_CAMERA_KEEPASPECTRATIO_DESC;Keep Aspect Ratio;Garder l'aspect ratio
+LOC_EDITOR_CAMERA_FILL_TITLE;Fill;Remplir
+LOC_EDITOR_CAMERA_FILL_DESC;Fills the window;Remplis la fenetre

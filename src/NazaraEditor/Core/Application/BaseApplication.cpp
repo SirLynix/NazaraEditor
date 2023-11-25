@@ -18,6 +18,7 @@ namespace Nz
 
 	EditorBaseApplication::EditorBaseApplication()
 		: m_level(this)
+		, m_engineTextureStretchMode(StretchMode::KeepAspectRatio)
 	{
 		NazaraAssert(s_instance == nullptr, "EditorBaseApplication already exists");
 		s_instance = this;

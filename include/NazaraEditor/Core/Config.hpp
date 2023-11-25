@@ -15,4 +15,13 @@
 #define NAZARAEDITOR_CORE_API
 #endif
 
+namespace Nz
+{
+	enum StretchMode
+	{
+		Fill,
+		KeepAspectRatio
+	};
+}
+
 #endif // NAZARAEDITOR_CORE_CONFIG_HPP

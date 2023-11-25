@@ -21,10 +21,29 @@ namespace Nz
 				.category = "Tools",
 				}, size);
 		}
+
+		app.RegisterAction<Nz::EditorAction_SetCameraStretchMode>({
+			.className = std::format("{}_{}", Nz::EditorAction_SetCameraSize::GetClassName(), "Fill"),
+			.description = "LOC_EDITOR_CAMERA_FILL_DESC",
+			.path = { "LOC_EDITOR_MENU_VIEW", "LOC_EDITOR_MENU_ASPECTRATIO", "LOC_EDITOR_CAMERA_FILL_TITLE" },
+			.category = "Tools",
+			}, StretchMode::Fill);
+
+		app.RegisterAction<Nz::EditorAction_SetCameraStretchMode>({
+			.className = std::format("{}_{}", Nz::EditorAction_SetCameraSize::GetClassName(), "AspectRatio"),
+			.description = "LOC_EDITOR_CAMERA_KEEPASPECTRATIO_DESC",
+			.path = { "LOC_EDITOR_MENU_VIEW", "LOC_EDITOR_MENU_ASPECTRATIO", "LOC_EDITOR_CAMERA_KEEPASPECTRATIO_TITLE" },
+			.category = "Tools",
+			}, StretchMode::KeepAspectRatio);
 	}
 
 	void EditorAction_SetCameraSize::Execute()
 	{
 		Nz::EditorBaseApplication::Instance()->CreateEngineTexture(m_size);
+	}
+
+	void EditorAction_SetCameraStretchMode::Execute()
+	{
+		Nz::EditorBaseApplication::Instance()->SetEngineTextureStretchMode(m_mode);
 	}
 }
