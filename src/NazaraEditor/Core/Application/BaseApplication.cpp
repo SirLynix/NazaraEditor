@@ -16,8 +16,9 @@ namespace Nz
 {
 	EditorBaseApplication* EditorBaseApplication::s_instance = nullptr;
 
-	EditorBaseApplication::EditorBaseApplication()
-		: m_level(this)
+	EditorBaseApplication::EditorBaseApplication(int argc, char** argv)
+		: Application(argc, argv)
+		, m_level(this)
 		, m_engineTextureStretchMode(StretchMode::KeepAspectRatio)
 	{
 		NazaraAssert(s_instance == nullptr, "EditorBaseApplication already exists");

@@ -36,7 +36,7 @@ namespace Nz
 		// Editor events
 		NazaraSignal(OnActionRegistered, const EditorAction::Properties&);
 
-		EditorBaseApplication();
+		EditorBaseApplication(int argc, char** argv);
 		virtual ~EditorBaseApplication();
 
 		static EditorBaseApplication* Instance();

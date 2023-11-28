@@ -8,7 +8,7 @@ namespace NzEditor
 		: public Nz::EditorBaseApplication
 	{
 	public:
-		Application();
+		Application(int argc, char** argv);
 
 		virtual bool NewLevel() override;
 	};

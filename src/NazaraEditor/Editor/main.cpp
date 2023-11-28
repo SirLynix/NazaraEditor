@@ -24,7 +24,7 @@ int WinMain(int argc, char* argv[])
 
 	Nz::EditorLogger logger;
 
-	NzEditor::Application app;
+	NzEditor::Application app(argc, argv);
 	app.SetLogger(logger);
 
 	ImGui::EnsureContextOnThisThread();

@@ -18,7 +18,8 @@
 
 namespace NzEditor
 {
-	Application::Application()
+	Application::Application(int argc, char** argv)
+		: Nz::EditorBaseApplication(argc, argv)
 	{
 		RegisterWindow<NzEditor::MainWindow>();
 		RegisterWindow<NzEditor::AssetsWindow>();
