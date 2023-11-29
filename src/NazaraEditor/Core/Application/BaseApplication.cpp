@@ -1,9 +1,10 @@
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
 #include <NazaraEditor/Core/Components/NameComponent.hpp>
-#include <NazaraEditor/Core/Systems/CameraSystem.hpp>
+#include <NazaraEditor/Core/Systems/ComponentsSystem.hpp>
 
 #include <Nazara/Core/AppEntitySystemComponent.hpp>
+#include <Nazara/Core/AppFilesystemComponent.hpp>
 #include <Nazara/Graphics/Components/CameraComponent.hpp>
 #include <Nazara/Graphics/FramePipeline.hpp>
 #include <Nazara/Graphics/RenderTexture.hpp>
@@ -28,9 +29,12 @@ namespace Nz
 		std::filesystem::path resourceDir = "assets/editor";
 		if (!std::filesystem::is_directory(resourceDir) && std::filesystem::is_directory("../.." / resourceDir))
 			resourceDir = "../.." / resourceDir;
+
 		SetResourceFolder(resourceDir);
 
 		auto& windowing = AddComponent<Nz::AppWindowingComponent>();
+		auto& fs = AddComponent<Nz::AppFilesystemComponent>();
+		fs.Mount("editor:", resourceDir);
 
 		std::shared_ptr<Nz::RenderDevice> device = Nz::Graphics::Instance()->GetRenderDevice();
 
@@ -53,7 +57,7 @@ namespace Nz
 		ImGui::EnsureContextOnThisThread();
 
 		// load the passes after Imgui is init
-		auto passList = Nz::PipelinePassList::LoadFromFile(m_resourceFolder / "editor.passlist");
+		auto passList = fs.Load<Nz::PipelinePassList>("editor:/editor.passlist");
 		m_editorCamera = std::make_unique<Nz::Camera>(std::make_shared<RenderWindow>(*m_windowSwapchain), passList);
 
 		AddUpdaterFunc(Interval{ Nz::Time::Milliseconds(16) }, [&](Nz::Time elapsed) {
@@ -160,7 +164,8 @@ namespace Nz
 	{
 		RenderSystem& system = m_level.GetEnttWorld()->GetSystem<RenderSystem>();
 
-		auto passList = Nz::PipelinePassList::LoadFromFile(m_resourceFolder / "engine.passlist");
+		auto& fs = GetComponent<AppFilesystemComponent>();
+		auto passList = fs.Load<Nz::PipelinePassList>("editor:/engine.passlist");
 
 		auto& cameraComponent = m_mainCamera.emplace<Nz::CameraComponent>(std::make_shared<Nz::RenderTexture>(m_engineTexture), passList, Nz::ProjectionType::Perspective);
 		cameraComponent.UpdateFOV(70.f);
