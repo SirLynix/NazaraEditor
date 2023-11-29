@@ -18,7 +18,7 @@ namespace NzEditor
 	{
 		Nz::EditorMainWindow::OnRenderImgui();
 
-		if (ImGui::Begin("MainWindow"))
+		if (ImGui::Begin("MainWindow", nullptr, ImGuiWindowFlags_NoScrollbar))
 		{
 			auto pos = ImGui::GetCursorPos();
 			auto size = ImGui::GetContentRegionAvail();
