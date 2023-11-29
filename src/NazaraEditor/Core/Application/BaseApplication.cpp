@@ -115,7 +115,7 @@ namespace Nz
 		if (bRes)
 		{
 			RenderSystem& system = m_level.GetEnttWorld()->AddSystem<RenderSystem>();
-			m_level.GetEnttWorld()->AddSystem<EditorCameraSystem>();
+			m_level.GetEnttWorld()->AddSystem<EditorComponentsSystem>();
 
 			system.AttachExternalSwapchain(*m_windowSwapchain);
 			system.GetFramePipeline().RegisterViewer(m_editorCamera.get(), 2);
