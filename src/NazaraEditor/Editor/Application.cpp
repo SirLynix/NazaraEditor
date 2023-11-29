@@ -54,12 +54,17 @@ namespace NzEditor
 			Nz::DirectionalLight& light = lightComponent.AddLight<Nz::DirectionalLight>();
 			light.UpdateRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(-1, 0, -1), Nz::Vector3f::Up()));
 			light.EnableShadowCasting(true);
+
+			{
+				auto& cmp = directional.get<Nz::EditorNameComponent>();
+				cmp.SetIcon("editor:/icons/light.png");
+			}
 		}
 
-		for (int i = 0; i < 1; ++i)
+		for (int i = 0; i < 5; ++i)
 		{
 			auto cube = CreateEntity(std::format("Cube_{}", i + 1));
-			cube.get<Nz::NodeComponent>().SetPosition(Nz::Vector3f(i * 2, 0, 0));
+			cube.get<Nz::NodeComponent>().SetPosition(Nz::Vector3f(i * 2, 0, i + 1));
 			Nz::GraphicsComponent& graphicsComponent = cube.emplace<Nz::GraphicsComponent>();
 
 			std::shared_ptr<Nz::GraphicalMesh> boxMesh = Nz::GraphicalMesh::Build(Nz::Primitive::Box(Nz::Vector3f(1.f), Nz::Vector3ui::Zero(), Nz::Matrix4f::Scale(Nz::Vector3f(1.f)), Nz::Rectf(0.f, 0.f, 2.f, 2.f)));
