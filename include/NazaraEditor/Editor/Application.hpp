@@ -1,15 +1,24 @@
 #pragma once
 
-#include <NazaraEditor/Core/Application/BaseApplication.hpp>
+#include <Nazara/Core/ApplicationComponent.hpp>
+
+namespace Nz
+{
+	class EditorBaseApplication;
+	class Level;
+}
 
 namespace NzEditor
 {
 	class Application
-		: public Nz::EditorBaseApplication
+		: public Nz::ApplicationComponent
 	{
 	public:
-		Application(int argc, char** argv);
+		Application(Nz::ApplicationBase& app, Nz::EditorBaseApplication& editor);
 
-		virtual bool NewLevel() override;
+	protected:
+		void NewLevel(Nz::Level& level);
+
+		Nz::EditorBaseApplication& m_editor;
 	};
 }

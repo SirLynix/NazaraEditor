@@ -2,6 +2,7 @@
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
 #include <Nazara/Core/StringExt.hpp>
+#include <NazaraImgui/NazaraImgui.hpp>
 
 namespace Nz
 {

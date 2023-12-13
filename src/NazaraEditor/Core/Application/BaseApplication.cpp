@@ -3,23 +3,27 @@
 #include <NazaraEditor/Core/Components/NameComponent.hpp>
 #include <NazaraEditor/Core/Systems/ComponentsSystem.hpp>
 
+#include <Nazara/Core/Application.hpp>
 #include <Nazara/Core/AppEntitySystemComponent.hpp>
 #include <Nazara/Core/AppFilesystemComponent.hpp>
 #include <Nazara/Graphics/Components/CameraComponent.hpp>
 #include <Nazara/Graphics/FramePipeline.hpp>
+#include <Nazara/Graphics/PipelinePassList.hpp>
 #include <Nazara/Graphics/RenderTexture.hpp>
 #include <Nazara/Graphics/RenderWindow.hpp>
 #include <Nazara/Graphics/Systems/RenderSystem.hpp>
 #include <Nazara/Platform/AppWindowingComponent.hpp>
 #include <Nazara/Utility/Components/NodeComponent.hpp>
 
+#include <NazaraImgui/NazaraImgui.hpp>
+#include <NazaraLocalization/Localization.hpp>
+
 namespace Nz
 {
 	EditorBaseApplication* EditorBaseApplication::s_instance = nullptr;
 
-	EditorBaseApplication::EditorBaseApplication(int argc, char** argv)
-		: Application(argc, argv)
-		, m_level(this)
+	EditorBaseApplication::EditorBaseApplication()
+		: m_level(this)
 		, m_engineTextureStretchMode(StretchMode::KeepAspectRatio)
 	{
 		NazaraAssert(s_instance == nullptr, "EditorBaseApplication already exists");
@@ -32,8 +36,8 @@ namespace Nz
 
 		SetResourceFolder(resourceDir);
 
-		auto& windowing = AddComponent<Nz::AppWindowingComponent>();
-		auto& fs = AddComponent<Nz::AppFilesystemComponent>();
+		auto& windowing = Nz::ApplicationBase::Instance()->GetComponent<Nz::AppWindowingComponent>();
+		auto& fs = Nz::ApplicationBase::Instance()->GetComponent<Nz::AppFilesystemComponent>();
 		fs.Mount("editor:", resourceDir);
 
 		std::shared_ptr<Nz::RenderDevice> device = Nz::Graphics::Instance()->GetRenderDevice();
@@ -46,12 +50,11 @@ namespace Nz
 		CreateEngineTexture({ 1280, 720 });
 
 		// connect basic handler
-		window.GetEventHandler().OnQuit.Connect([&window](const auto* handler) {
+		window.GetEventHandler().OnQuit.Connect([this](const auto* handler) {
 			NazaraUnused(handler);
-			window.Close();
+			m_window->Close();
+			m_window = nullptr;
 		});
-
-		AddComponent<Nz::AppEntitySystemComponent>();
 
 		Nz::Imgui::Instance()->Init(window);
 		ImGui::EnsureContextOnThisThread();
@@ -59,26 +62,6 @@ namespace Nz
 		// load the passes after Imgui is init
 		auto passList = fs.Load<Nz::PipelinePassList>("editor:/editor.passlist");
 		m_editorCamera = std::make_unique<Nz::Camera>(std::make_shared<RenderWindow>(*m_windowSwapchain), passList);
-
-		AddUpdaterFunc(Interval{ Nz::Time::Milliseconds(16) }, [&](Nz::Time elapsed) {
-			if (!window.IsOpen())
-				return;
-
-			window.ProcessEvents();
-
-			m_popupManager.Update();
-
-			Nz::Imgui::Instance()->Update(elapsed.AsSeconds());
-			Nz::Imgui::Instance()->Render();
-
-			//Nz::RenderFrame frame = m_windowSwapchain->AcquireFrame();
-			//if (!frame)
-			//	return;
-
-			//Nz::Imgui::Instance()->Render(m_windowSwapchain->GetSwapchain(), frame);
-
-			//frame.Present();
-		});
 	}
 
 	EditorBaseApplication::~EditorBaseApplication()
@@ -127,6 +110,8 @@ namespace Nz
 
 			CreateEngineCamera();
 
+			OnLevelCreated(m_level);
+
 			OnLevelChanged(m_level);
 		}
 		return bRes;
@@ -164,7 +149,7 @@ namespace Nz
 	{
 		RenderSystem& system = m_level.GetEnttWorld()->GetSystem<RenderSystem>();
 
-		auto& fs = GetComponent<AppFilesystemComponent>();
+		auto& fs = Nz::ApplicationBase::Instance()->GetComponent<AppFilesystemComponent>();
 		auto passList = fs.Load<Nz::PipelinePassList>("editor:/engine.passlist");
 
 		auto& cameraComponent = m_mainCamera.emplace<Nz::CameraComponent>(std::make_shared<Nz::RenderTexture>(m_engineTexture), passList, Nz::ProjectionType::Perspective);

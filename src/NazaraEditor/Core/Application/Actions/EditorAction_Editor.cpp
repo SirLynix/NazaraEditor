@@ -3,6 +3,8 @@
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraLocalization/Localization.hpp>
 
+#include <Nazara/Core/ApplicationBase.hpp>
+
 namespace Nz
 {
 	void RegisterEditorActions(EditorBaseApplication& app)
@@ -23,7 +25,7 @@ namespace Nz
 			.choices = {
 				{
 					.name = "Yes",
-					.callback = []() { Nz::EditorBaseApplication::Instance()->Quit(); }
+					.callback = []() { Nz::ApplicationBase::Instance()->Quit(); }
 				},
 				{
 					.name = "No"

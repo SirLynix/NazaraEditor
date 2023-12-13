@@ -2,6 +2,7 @@
 
 #include <NazaraEditor/Editor/Application.hpp>
 
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/Reflection.hpp>
 #include <NazaraEditor/Core/Reflection/Editor.hpp>
 

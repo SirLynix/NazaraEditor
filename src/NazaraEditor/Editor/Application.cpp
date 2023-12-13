@@ -4,6 +4,7 @@
 #include <NazaraEditor/Editor/UI/LevelWindow.hpp>
 #include <NazaraEditor/Editor/UI/MainWindow.hpp>
 #include <NazaraEditor/Editor/UI/OutputWindow.hpp>
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
 
 #include <Nazara/Graphics/Components/GraphicsComponent.hpp>
@@ -18,38 +19,39 @@
 
 namespace NzEditor
 {
-	Application::Application(int argc, char** argv)
-		: Nz::EditorBaseApplication(argc, argv)
+	Application::Application(Nz::ApplicationBase& app, Nz::EditorBaseApplication& editor)
+		: ApplicationComponent(app)
+		, m_editor(editor)
 	{
-		RegisterWindow<NzEditor::MainWindow>();
-		RegisterWindow<NzEditor::AssetsWindow>();
-		RegisterWindow<NzEditor::LevelWindow>();
-		RegisterWindow<NzEditor::InspectorWindow>();
-		RegisterWindow<NzEditor::OutputWindow>();
+		ImGui::EnsureContextOnThisThread();
 
-		Nz::RegisterLevelActions(*this);
-		Nz::RegisterEditorActions(*this);
-		Nz::RegisterCameraActions(*this);
-		Nz::RegisterLogActions(*this);
+		m_editor.RegisterWindow<NzEditor::MainWindow>();
+		m_editor.RegisterWindow<NzEditor::AssetsWindow>();
+		m_editor.RegisterWindow<NzEditor::LevelWindow>();
+		m_editor.RegisterWindow<NzEditor::InspectorWindow>();
+		m_editor.RegisterWindow<NzEditor::OutputWindow>();
+
+		Nz::RegisterLevelActions(m_editor);
+		Nz::RegisterEditorActions(m_editor);
+		Nz::RegisterCameraActions(m_editor);
+		Nz::RegisterLogActions(m_editor);
 
 		Nz::Localization::OnLocaleInstalled.Connect([this](std::string_view locale) {
-			RegisterAction<Nz::EditorAction_SetLocale>({
+			m_editor.RegisterAction<Nz::EditorAction_SetLocale>({
 				.className = std::format("{}_{}", Nz::EditorAction_SetLocale::GetClassName(), locale),
 				.description = locale,
 				.path = { "LOC_EDITOR_MENU_TOOLS", "LOC_EDITOR_MENU_LANGUAGE", locale },
 				.category = "Tools",
 			}, locale);
 		});
+
+		m_editor.OnLevelCreated.Connect(this, &Application::NewLevel);
 	}
 
-	bool Application::NewLevel()
+	void Application::NewLevel(Nz::Level& level)
 	{
-		bool bResult = EditorBaseApplication::NewLevel();
-		if (!bResult)
-			return false;
-
 		{
-			auto directional = CreateEntity("SunLight");
+			auto directional = m_editor.CreateEntity("SunLight");
 			Nz::LightComponent& lightComponent = directional.emplace<Nz::LightComponent>();
 			Nz::DirectionalLight& light = lightComponent.AddLight<Nz::DirectionalLight>();
 			light.UpdateRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(-1, 0, -1), Nz::Vector3f::Up()));
@@ -63,7 +65,7 @@ namespace NzEditor
 
 		for (int i = 0; i < 5; ++i)
 		{
-			auto cube = CreateEntity(std::format("Cube_{}", i + 1));
+			auto cube = m_editor.CreateEntity(std::format("Cube_{}", i + 1));
 			cube.get<Nz::NodeComponent>().SetPosition(Nz::Vector3f(i * 2, 0, i + 1));
 			Nz::GraphicsComponent& graphicsComponent = cube.emplace<Nz::GraphicsComponent>();
 
@@ -76,9 +78,7 @@ namespace NzEditor
 			graphicsComponent.AttachRenderable(boxModel);
 		}
 
-		GetMainCamera().get<Nz::EditorCameraComponent>().SetPosition(Nz::Vector3f(- 5, 0, 0));
-		GetMainCamera().get<Nz::EditorCameraComponent>().SetRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(1, 0, 0), Nz::Vector3f::Up()));
-
-		return true;
+		m_editor.GetMainCamera().get<Nz::EditorCameraComponent>().SetPosition(Nz::Vector3f(- 5, 0, 0));
+		m_editor.GetMainCamera().get<Nz::EditorCameraComponent>().SetRotation(Nz::Quaternionf::LookAt(Nz::Vector3f(1, 0, 0), Nz::Vector3f::Up()));
 	}
 }

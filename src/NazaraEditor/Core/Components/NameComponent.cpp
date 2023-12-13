@@ -2,6 +2,7 @@
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
 #include <Nazara/Core/AppFilesystemComponent.hpp>
+#include <Nazara/Core/ApplicationBase.hpp>
 #include <Nazara/Graphics/Billboard.hpp>
 #include <Nazara/Graphics/FramePipeline.hpp>
 #include <Nazara/Graphics/MaterialInstance.hpp>
@@ -28,7 +29,7 @@ namespace Nz
 			m_icon = {};
 		}
 
-		auto& fs = EditorBaseApplication::Instance()->GetComponent<Nz::AppFilesystemComponent>();
+		auto& fs = Nz::ApplicationBase::Instance()->GetComponent<Nz::AppFilesystemComponent>();
 
 		Nz::TextureParams params;
 		params.loadFormat = Nz::PixelFormat::RGBA8_SRGB;

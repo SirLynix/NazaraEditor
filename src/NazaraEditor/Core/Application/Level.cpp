@@ -1,6 +1,7 @@
 #include <NazaraEditor/Core/Application/Level.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
+#include <Nazara/Core/ApplicationBase.hpp>
 #include <Nazara/Core/AppEntitySystemComponent.hpp>
 #include <Nazara/Graphics/Components/GraphicsComponent.hpp>
 #include <Nazara/Utility/Components/NodeComponent.hpp>
@@ -19,7 +20,7 @@ namespace Nz
 
 	bool Level::CreateNewLevel()
 	{
-		auto& ecs = m_application->GetComponent<Nz::AppEntitySystemComponent>();
+		auto& ecs = Nz::ApplicationBase::Instance()->GetComponent<Nz::AppEntitySystemComponent>();
 		m_world = &ecs.AddWorld<Nz::EnttWorld>();
 		return true;
 	}

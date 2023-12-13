@@ -8,6 +8,7 @@
 #include <NazaraImgui/NazaraImgui.hpp>
 #include <NazaraEditor/Core.hpp>
 #include <NazaraEditor/Core/Reflection.hpp>
+#include <NazaraEditor/Core/Application/ApplicationComponent.hpp>
 
 #include <NazaraEditor/Editor/Application.hpp>
 
@@ -19,17 +20,20 @@ int main(int argc, char* argv[])
 int WinMain(int argc, char* argv[])
 #endif
 {
-	NazaraUnused(argc);
-	NazaraUnused(argv);
-
+	// Logger must be created before app init to catch startup logs
 	Nz::EditorLogger logger;
 
-	NzEditor::Application app(argc, argv);
-	app.SetLogger(logger);
+	Nz::Application<Nz::EditorCore> app(argc, argv);
+	app.AddComponent<Nz::AppWindowingComponent>();
+	app.AddComponent<Nz::AppFilesystemComponent>();
+	app.AddComponent<Nz::AppEntitySystemComponent>();
 
-	ImGui::EnsureContextOnThisThread();
+	// Now that all required components are registered, boot up Editor
+	auto& editor = app.AddComponent<Nz::EditorApplicationComponent>();
+	editor.SetLogger(logger);
+	app.AddComponent<NzEditor::Application>(editor);
 
-	Nz::Localization::Instance()->LoadLocalizationFile(app.GetResourceFolder() / "localization.csv");
+	Nz::Localization::Instance()->LoadLocalizationFile(editor.GetResourceFolder() / "localization.csv");
 	Nz::Localization::Instance()->SetLocale("en-US");
 
 	entt::meta<Nz::NodeComponent>()
@@ -48,6 +52,6 @@ int WinMain(int argc, char* argv[])
 		.type(entt::type_hash<Nz::EditorNameComponent>::value())
 		.func<&Nz::ReflectComponent<Nz::EditorPropertyInspector<Nz::EditorRenderer>, Nz::EditorNameComponent>>(entt::hashed_string("Reflect"));
 
-	app.NewLevel();
+	editor.NewLevel();
 	return app.Run();
 }

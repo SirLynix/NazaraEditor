@@ -7,21 +7,18 @@
 #include <NazaraEditor/Core/Application/Level.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
-#include <NazaraImgui/NazaraImgui.hpp>
-#include <NazaraLocalization/Localization.hpp>
-
-#include <NazaraEditor/Core/Core.hpp>
-#include <Nazara/Core/Application.hpp>
 
 namespace Nz
 {
 	class Camera;
+	class Window;
 	class WindowSwapchain;
 
 	class NAZARAEDITOR_CORE_API EditorBaseApplication
-		: public Nz::Application<Nz::Graphics, Nz::Imgui, Nz::Localization, Nz::EditorCore>
 	{
 	public:
+		NazaraSignal(OnLevelCreated, Nz::Level&);
+		NazaraSignal(OnLevelLoaded, Nz::Level&);
 		NazaraSignal(OnLevelChanged, Nz::Level&);
 
 		// Entity lifetime events
@@ -36,7 +33,7 @@ namespace Nz
 		// Editor events
 		NazaraSignal(OnActionRegistered, const EditorAction::Properties&);
 
-		EditorBaseApplication(int argc, char** argv);
+		EditorBaseApplication();
 		virtual ~EditorBaseApplication();
 
 		static EditorBaseApplication* Instance();

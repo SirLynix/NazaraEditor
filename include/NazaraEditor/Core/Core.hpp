@@ -3,7 +3,10 @@
 #include <NazaraEditor/Core/Config.hpp>
 
 #include <Nazara/Core/ModuleBase.hpp>
+#include <Nazara/Graphics/Graphics.hpp>
+
 #include <NazaraImgui/NazaraImgui.hpp>
+#include <NazaraLocalization/Localization.hpp>
 
 namespace Nz
 {
@@ -12,7 +15,7 @@ namespace Nz
         friend ModuleBase;
 
     public:
-        using Dependencies = TypeList<Imgui>;
+        using Dependencies = TypeList<Imgui, Localization, Graphics>;
 
         struct Config {};
 

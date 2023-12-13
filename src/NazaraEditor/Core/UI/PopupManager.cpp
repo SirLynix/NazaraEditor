@@ -1,6 +1,8 @@
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
+#include <NazaraImgui/NazaraImgui.hpp>
+
 namespace Nz
 {
 	

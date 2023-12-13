@@ -1,11 +1,13 @@
 #include <NazaraEditor/Editor/UI/MainWindow.hpp>
 #include <NazaraEditor/Editor/Application.hpp>
 
+#include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
 
 #include <Nazara/Utility/Components/NodeComponent.hpp>
 
 #include <NazaraImgui/ImguiWidgets.hpp>
+#include <NazaraImgui/NazaraImgui.hpp>
 
 namespace NzEditor
 {

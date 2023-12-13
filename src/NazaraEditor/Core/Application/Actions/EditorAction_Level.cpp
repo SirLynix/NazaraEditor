@@ -2,6 +2,9 @@
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 #include <NazaraEditor/Core/UI/PopupManager.hpp>
 
+#include <Nazara/Graphics/Graphics.hpp>
+#include <Nazara/Renderer/Texture.hpp>
+
 namespace Nz
 {
 	void RegisterLevelActions(EditorBaseApplication& app)
