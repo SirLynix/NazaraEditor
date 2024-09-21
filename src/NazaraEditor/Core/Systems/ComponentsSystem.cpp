@@ -1,8 +1,7 @@
 #include <NazaraEditor/Core/Systems/ComponentsSystem.hpp>
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
 #include <NazaraEditor/Core/Components/NameComponent.hpp>
-
-#include <Nazara/Utility/Components/NodeComponent.hpp>
+#include <Nazara/Core/Components/NodeComponent.hpp>
 
 namespace Nz
 {

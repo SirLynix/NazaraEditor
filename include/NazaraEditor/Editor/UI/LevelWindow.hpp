@@ -1,7 +1,7 @@
 #include <NazaraEditor/Core.hpp>
 #include <NazaraEditor/Core/UI/Window.hpp>
 
-#include <Nazara/Utility/Node.hpp>
+#include <Nazara/Core/Node.hpp>
 #include <entt/entt.hpp>
 
 namespace NzEditor

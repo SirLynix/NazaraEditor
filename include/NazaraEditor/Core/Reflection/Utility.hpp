@@ -2,7 +2,7 @@
 
 #include <NazaraEditor/Core/Reflection/Reflection.hpp>
 
-#include <Nazara/Utility/Components/NodeComponent.hpp>
+#include <Nazara/Core/Components/NodeComponent.hpp>
 
 #include <imgui.h>
 

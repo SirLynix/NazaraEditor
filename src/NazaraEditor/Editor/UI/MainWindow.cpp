@@ -3,7 +3,7 @@
 
 #include <NazaraEditor/Core/Components/CameraComponent.hpp>
 
-#include <Nazara/Utility/Components/NodeComponent.hpp>
+#include <Nazara/Core/Components/NodeComponent.hpp>
 
 #include <NazaraImgui/ImguiWidgets.hpp>
 

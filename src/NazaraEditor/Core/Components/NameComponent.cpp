@@ -1,12 +1,13 @@
 #include <NazaraEditor/Core/Components/NameComponent.hpp>
 #include <NazaraEditor/Core/Application/BaseApplication.hpp>
 
-#include <Nazara/Core/AppFilesystemComponent.hpp>
+#include <Nazara/Core/FilesystemAppComponent.hpp>
+#include <Nazara/Core/Components/NodeComponent.hpp>
 #include <Nazara/Graphics/Billboard.hpp>
 #include <Nazara/Graphics/FramePipeline.hpp>
 #include <Nazara/Graphics/MaterialInstance.hpp>
+#include <Nazara/Graphics/TextureAsset.hpp>
 #include <Nazara/Graphics/Systems/RenderSystem.hpp>
-#include <Nazara/Utility/Components/NodeComponent.hpp>
 
 namespace Nz
 {
@@ -28,11 +29,9 @@ namespace Nz
 			m_icon = {};
 		}
 
-		auto& fs = EditorBaseApplication::Instance()->GetComponent<Nz::AppFilesystemComponent>();
+		auto& fs = EditorBaseApplication::Instance()->GetComponent<Nz::FilesystemAppComponent>();
 
-		Nz::TextureParams params;
-		params.loadFormat = Nz::PixelFormat::RGBA8_SRGB;
-		std::shared_ptr<Nz::Texture> tex = fs.Load<Nz::Texture>(path.string(), params);
+		std::shared_ptr<Nz::TextureAsset> tex = fs.Open<Nz::TextureAsset>(path.string(), { .sRGB = true });
 		std::shared_ptr<Nz::MaterialInstance> mat = Nz::MaterialInstance::GetDefault(Nz::MaterialType::Basic, Nz::MaterialInstancePreset::Transparent)->Clone();
 
 		mat->SetTextureProperty("BaseColorMap", tex);

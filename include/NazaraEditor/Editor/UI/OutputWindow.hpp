@@ -1,7 +1,6 @@
 #include <NazaraEditor/Core.hpp>
 
 #include <Nazara/Core.hpp>
-#include <Nazara/Utility.hpp>
 
 namespace NzEditor
 {

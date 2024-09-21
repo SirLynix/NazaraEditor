@@ -4,7 +4,6 @@
 #include <NazaraEditor/Core/Reflection/Math.hpp>
 
 #include <Nazara/Core.hpp>
-#include <Nazara/Utility.hpp>
 
 #include <array>
 #include <vector>

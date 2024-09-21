@@ -3,15 +3,15 @@
 #include <NazaraEditor/Core/Components/NameComponent.hpp>
 #include <NazaraEditor/Core/Systems/ComponentsSystem.hpp>
 
-#include <Nazara/Core/AppEntitySystemComponent.hpp>
-#include <Nazara/Core/AppFilesystemComponent.hpp>
+#include <Nazara/Core/EntitySystemAppComponent.hpp>
+#include <Nazara/Core/FilesystemAppComponent.hpp>
 #include <Nazara/Graphics/Components/CameraComponent.hpp>
 #include <Nazara/Graphics/FramePipeline.hpp>
 #include <Nazara/Graphics/RenderTexture.hpp>
 #include <Nazara/Graphics/RenderWindow.hpp>
 #include <Nazara/Graphics/Systems/RenderSystem.hpp>
-#include <Nazara/Platform/AppWindowingComponent.hpp>
-#include <Nazara/Utility/Components/NodeComponent.hpp>
+#include <Nazara/Platform/WindowingAppComponent.hpp>
+#include <Nazara/Core/Components/NodeComponent.hpp>
 
 namespace Nz
 {
@@ -32,8 +32,8 @@ namespace Nz
 
 		SetResourceFolder(resourceDir);
 
-		auto& windowing = AddComponent<Nz::AppWindowingComponent>();
-		auto& fs = AddComponent<Nz::AppFilesystemComponent>();
+		auto& windowing = AddComponent<Nz::WindowingAppComponent>();
+		auto& fs = AddComponent<Nz::FilesystemAppComponent>();
 		fs.Mount("editor:", resourceDir);
 
 		std::shared_ptr<Nz::RenderDevice> device = Nz::Graphics::Instance()->GetRenderDevice();
@@ -51,7 +51,7 @@ namespace Nz
 			window.Close();
 		});
 
-		AddComponent<Nz::AppEntitySystemComponent>();
+		AddComponent<Nz::EntitySystemAppComponent>();
 
 		Nz::Imgui::Instance()->Init(window);
 		ImGui::EnsureContextOnThisThread();
@@ -164,7 +164,7 @@ namespace Nz
 	{
 		RenderSystem& system = m_level.GetEnttWorld()->GetSystem<RenderSystem>();
 
-		auto& fs = GetComponent<AppFilesystemComponent>();
+		auto& fs = GetComponent<FilesystemAppComponent>();
 		auto passList = fs.Load<Nz::PipelinePassList>("editor:/engine.passlist");
 
 		auto& cameraComponent = m_mainCamera.emplace<Nz::CameraComponent>(std::make_shared<Nz::RenderTexture>(m_engineTexture), passList, Nz::ProjectionType::Perspective);
